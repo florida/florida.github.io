@@ -1,20 +1,20 @@
 @font-face {
     font-family: 'Proxima Nova Light';
-    src: url('css/fonts/proximanova-light-webfont.ttf') format('truetype');
+    src: url('fonts/proximanova-light-webfont.ttf') format('truetype');
     font-weight: normal;
     font-style: normal;
 }
 
 @font-face {
     font-family: 'Proxima Nova Regular';
-    src: url('css/fonts/proximanova-regular-webfont.ttf') format('truetype');
+    src: url('fonts/proximanova-regular-webfont.ttf') format('truetype');
     font-weight: normal;
     font-style: normal;
 }
 
 @font-face {
     font-family: 'Proxima Nova SemiBold';
-    src: url('css/fonts/proximanova-semibold-webfont.ttf') format('truetype');
+    src: url('fonts/proximanova-semibold-webfont.ttf') format('truetype');
     font-weight: normal;
     font-style: normal;
 }
