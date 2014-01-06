@@ -1,0 +1,69 @@
+@font-face {
+    font-family: 'Proxima Nova Light';
+    src: url('/css/fonts/proximanova-light-webfont.ttf') format('truetype');
+    font-weight: normal;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: 'Proxima Nova Regular';
+    src: url('/css/fonts/proximanova-regular-webfont.ttf') format('truetype');
+    font-weight: normal;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: 'Proxima Nova SemiBold';
+    src: url('/css/fonts/proximanova-semibold-webfont.ttf') format('truetype');
+    font-weight: normal;
+    font-style: normal;
+}
+
+body { 
+  background-color: #17191d;
+  font-family: "Proxima Nova Regular"; ;
+} 
+
+section.description { 
+  padding: 10px 30px 30px 30px;
+  color: #65727e;
+}
+
+section.description h1 {
+  font-family: "Proxima Nova SemiBold";
+  font-size: 3.5em;
+  padding-bottom: 10px;
+  border-bottom: 1px solid #31373f;
+  color: #90D4D4;
+  text-transform: uppercase;
+}
+
+section.description p {
+  font-size: 2em;
+  padding-top: 20px;
+}
+
+nav.nav-main > ul > li > a { 
+  text-decoration: none;
+  padding: 15px;
+  display: block;
+  color: #31373f;
+}
+
+nav.nav-main > ul > li:hover {
+  border-bottom: 1px solid #65727e;
+}
+
+nav.nav-main > ul > li > a:hover {
+  color: #65727e;
+}
+
+
+nav.nav-main > ul > li {
+  font-family: "Proxima Nova Light";
+  border-bottom: 1px solid #31373f;
+  border-right: 1px solid #31373f;
+  font-size: 1em;
+  text-transform: uppercase;
+  text-align: center;
+}
