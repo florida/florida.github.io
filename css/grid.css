@@ -22,9 +22,8 @@
        
         .span_1,
         .no-padding-left{
-            padding: 0 0 1.5% 0 !important;
+            padding: 0 !important;
         }
-
     /* 1. 1 Column Grid 0px - 559px 
     ----------------------------------------------------------------------------- 
     
@@ -43,14 +42,11 @@
             margin-left:0;
         }
         
-        .span_3 .description .col {
-            width: 100%;
-        }
-
-        
         .span_1 {
             margin-left:0;
             width:100%;
+            height: 100px;
+            overflow: auto;
         }
     }
 

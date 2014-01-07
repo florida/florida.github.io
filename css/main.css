@@ -22,16 +22,25 @@
 body { 
   background-color: #17191d;
   font-family: "Proxima Nova Regular"; ;
-} 
-
-section.description { 
-  padding: 10px 30px 30px 30px;
-  color: #65727e;
 }
 
+::selection {
+  background: #a8aebc;
+  }
+::-moz-selection {
+  background: #a8aebc; 
+}
+
+section.description { 
+  padding: 50px;
+  color: #65727e;
+}
+@media screen and (min-width: 0px) and (max-width: 559px) {
+  section.description { padding: 20px; }
+}
 section.description h1 {
   font-family: "Proxima Nova SemiBold";
-  font-size: 3.5em;
+  font-size: 3em;
   padding-bottom: 10px;
   border-bottom: 1px solid #31373f;
   color: #90D4D4;
@@ -39,9 +48,17 @@ section.description h1 {
 }
 
 section.description p {
-  font-size: 2em;
+  font-size: 1.5em;
   padding-top: 20px;
+  line-height: 1.6em;
 }
+
+section.description a {
+  color: #a8aebc;
+  text-decoration: none;
+}
+
+.bold { font-family: "Proxima Nova SemiBold"}
 
 nav.nav-main > ul > li > a { 
   text-decoration: none;
@@ -61,7 +78,9 @@ nav.nav-main > ul > li {
 nav.nav-main > ul > li:hover {
   border-right: 5px solid #a8aebc;
 }
-
+nav.nav-main > ul > li:active {
+  border-right: 2px solid #a8aebc;
+}
 
 nav.nav-main > ul > li > a:hover {
   color: #a8aebc;
