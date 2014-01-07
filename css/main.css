@@ -21,7 +21,7 @@
 
 body { 
   background-color: #17191d;
-  font-family: "Proxima Nova Regular"; ;
+  font-family: "Proxima Nova Regular", "Helvetica", sans-serif;
 }
 
 ::selection {
@@ -39,7 +39,7 @@ section.description {
   section.description { padding: 20px; }
 }
 section.description h1 {
-  font-family: "Proxima Nova SemiBold";
+  font-family: "Proxima Nova SemiBold", "Helvetica", sans-serif;
   font-size: 3em;
   padding-bottom: 10px;
   border-bottom: 1px solid #31373f;
@@ -58,7 +58,7 @@ section.description a {
   text-decoration: none;
 }
 
-.bold { font-family: "Proxima Nova SemiBold"}
+.bold { font-family: "Proxima Nova SemiBold", "Helvetica", sans-serif; }
 
 nav.nav-main > ul > li > a { 
   text-decoration: none;
@@ -68,7 +68,7 @@ nav.nav-main > ul > li > a {
 }
 
 nav.nav-main > ul > li {
-  font-family: "Proxima Nova Regular";
+  font-family: "Proxima Nova Regular", "Helvetica", sans-serif;
   border-bottom: 1px solid #4f5b67;
   border-right: 1px solid #4f5b67;
   font-size: 1em;
