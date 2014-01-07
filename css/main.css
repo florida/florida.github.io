@@ -47,23 +47,22 @@ nav.nav-main > ul > li > a {
   text-decoration: none;
   padding: 15px;
   display: block;
-  color: #31373f;
+  color: #4f5b67;
+}
+
+nav.nav-main > ul > li {
+  font-family: "Proxima Nova Regular";
+  border-bottom: 1px solid #4f5b67;
+  border-right: 1px solid #4f5b67;
+  font-size: 1em;
+  text-transform: uppercase;
 }
 
 nav.nav-main > ul > li:hover {
-  border-bottom: 1px solid #65727e;
+  border-right: 5px solid #a8aebc;
 }
+
 
 nav.nav-main > ul > li > a:hover {
-  color: #65727e;
-}
-
-
-nav.nav-main > ul > li {
-  font-family: "Proxima Nova Light";
-  border-bottom: 1px solid #31373f;
-  border-right: 1px solid #31373f;
-  font-size: 1em;
-  text-transform: uppercase;
-  text-align: center;
+  color: #a8aebc;
 }
