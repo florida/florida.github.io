@@ -17,4 +17,9 @@ function display_things_i_do(){
   document.getElementById("what_i_do").innerHTML = what_i_do;
 }
 
+document.getElementById("what_i_do").addEventListener("click", function(){
+  display_things_i_do();
+  onclick="ga('send', 'event', 'description', 'click', 'what i do');"
+}, false);
+
 display_things_i_do();
