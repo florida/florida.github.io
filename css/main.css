@@ -94,6 +94,10 @@ section.description, nav.nav-main{
             animation: fadein 2s;
 }
 
+#what_i_do {
+  border-bottom: 1px solid #4f5b67;
+}
+
 @keyframes fadein {
     from { opacity: 0; }
     to   { opacity: 1; }
