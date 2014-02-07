@@ -10,7 +10,8 @@ var things_i_do = [
   "discovering new things that interests me",
   "singing in the shower",
   "playing guitar",
-  "binge watching on <a href='http://netflix.com'>Netflix</a>"];
+  "binge watching on <a href='http://netflix.com'>Netflix</a>",
+  "learning new programming languages"];
 
 function display_things_i_do(){
   what_i_do = things_i_do[Math.floor(Math.random() * things_i_do.length)];
