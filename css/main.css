@@ -36,11 +36,17 @@ section.description {
   color: #65727e;
 }
 @media screen and (min-width: 0px) and (max-width: 559px) {
-  section.description { padding: 20px; }
+  section.description { padding: 40px; }
+  section.description p { font-size: 1.1em !important; }
+  section.description h1 { font-size: 2em !important; text-align: center }
+  .span_1 {
+    height: 141px;
+    overflow: auto;
+  }
 }
 section.description h1 {
   font-family: "Proxima Nova SemiBold", "Helvetica", sans-serif;
-  font-size: 3em;
+  font-size: 2.8em;
   padding-bottom: 10px;
   border-bottom: 1px solid #31373f;
   color: #90D4D4;
@@ -48,7 +54,7 @@ section.description h1 {
 }
 
 section.description p {
-  font-size: 1.5em;
+  font-size: 1.4em;
   padding-top: 20px;
   line-height: 1.6em;
 }
