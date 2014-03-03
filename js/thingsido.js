@@ -24,3 +24,4 @@ document.getElementById("what_i_do").addEventListener("click", function(){
 }, false);
 
 display_things_i_do();
+document.addEventListener("touchstart", function(){}, true);

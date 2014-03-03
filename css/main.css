@@ -71,6 +71,7 @@ nav.nav-main > ul > li > a {
   padding: 15px;
   display: block;
   color: #4f5b67;
+  -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
 }
 
 nav.nav-main > ul > li {
