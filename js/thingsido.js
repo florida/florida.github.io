@@ -11,9 +11,11 @@ var things_i_do = [
   "singing in the shower",
   "playing guitar",
   "binge watching on <a href='http://netflix.com'>Netflix</a>",
-  "learning new programming languages"];
+  "learning new programming languages",
+  "teaching programming to beginners",
+  "exploring Vancouver, BC"];
 
-function display_things_i_do(){
+function display_things_i_do() {
   what_i_do = things_i_do[Math.floor(Math.random() * things_i_do.length)];
   document.getElementById("what_i_do").innerHTML = what_i_do;
 }
