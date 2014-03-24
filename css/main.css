@@ -39,6 +39,7 @@ section.description {
   section.description { padding: 40px; }
   section.description p { font-size: 1.1em !important; }
   section.description h1 { font-size: 2em !important; text-align: center }
+  section.description > p.titles { font-size: 0.9em !important; }
   .span_1 {
     height: 141px;
     overflow: auto;
@@ -99,6 +100,11 @@ section.description, nav.nav-main{
         -ms-animation: fadein 2s; /* Internet Explorer */
          -o-animation: fadein 2s; /* Opera */
             animation: fadein 2s;
+}
+
+section.description > p.titles { 
+  margin-top: -15px; 
+  font-size: 0.8em;
 }
 
 #what_i_do {
