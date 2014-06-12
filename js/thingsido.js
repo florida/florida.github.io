@@ -14,7 +14,9 @@ var things_i_do = [
   "learning new programming languages",
   "teaching programming to beginners",
   "exploring Vancouver, BC",
-  "teaching programming at Kodermine"];
+  "teaching programming at Kodermine",
+  "learning functional programming"
+];
 
 function display_things_i_do() {
   what_i_do = things_i_do[Math.floor(Math.random() * things_i_do.length)];
