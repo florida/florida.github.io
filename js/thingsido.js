@@ -15,7 +15,11 @@ var things_i_do = [
   "teaching programming to beginners",
   "exploring Vancouver, BC",
   "teaching programming at Kodermine",
-  "learning functional programming"
+  "learning functional programming",
+  "obsessing over BMO",
+  "asking the world 'is this a thing'",
+  "making weird faces in meatspace",
+  "in meatspace"
 ];
 
 function display_things_i_do() {
