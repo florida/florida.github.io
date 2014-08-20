@@ -20,7 +20,9 @@ var things_i_do = [
   "asking the world 'is this a thing'",
   "making weird faces in meatspace",
   "in meatspace",
-  "loving people"
+  "loving people",
+  "making random gifs",
+  "<a href='http://coffeecupstain.tumblr.com'>staining coffee cups for art</a>"
 ];
 
 function display_things_i_do() {
