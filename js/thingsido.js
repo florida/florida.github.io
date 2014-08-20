@@ -19,7 +19,8 @@ var things_i_do = [
   "obsessing over BMO",
   "asking the world 'is this a thing'",
   "making weird faces in meatspace",
-  "in meatspace"
+  "in meatspace",
+  "loving people"
 ];
 
 function display_things_i_do() {
