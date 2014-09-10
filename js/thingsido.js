@@ -20,9 +20,9 @@ var things_i_do = [
   "asking the world 'is this a thing'",
   "making weird faces in meatspace",
   "in meatspace",
-  "loving people",
+  "mentoring at <a href='http://ladieslearningcode.com/'>Ladies Learning Code</a>",
   "making random gifs",
-  "<a href='http://coffeecupstain.tumblr.com'>staining coffee cups for art</a>"
+  "staining coffee cups for <a href='http://coffeecupstain.tumblr.com'>art</a>"
 ];
 
 function display_things_i_do() {
@@ -36,4 +36,5 @@ document.getElementById("what_i_do").addEventListener("click", function(){
 }, false);
 
 display_things_i_do();
+
 document.addEventListener("touchstart", function(){}, true);
