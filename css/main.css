@@ -19,21 +19,21 @@
     font-style: normal;
 }
 
-body { 
-  background-color: #17191d;
+body {
+  background-color: #2B303B;
   font-family: "Proxima Nova Regular", "Helvetica", sans-serif;
 }
 
 ::selection {
-  background: #a8aebc;
+  background: #343D46;
   }
 ::-moz-selection {
-  background: #a8aebc; 
+  background: #343D46;
 }
 
-section.description { 
+section.description {
   padding: 50px;
-  color: #65727e;
+  color: #65737E;
 }
 @media screen and (min-width: 0px) and (max-width: 559px) {
   section.description { padding: 40px; }
@@ -50,7 +50,7 @@ section.description h1 {
   font-size: 2.8em;
   padding-bottom: 10px;
   border-bottom: 1px solid #31373f;
-  color: #90D4D4;
+  color: #96B5B4;
   text-transform: uppercase;
 }
 
@@ -63,15 +63,22 @@ section.description p {
 section.description a {
   color: #a8aebc;
   text-decoration: none;
+  border-bottom: 1px solid #4f5b67;
+  font-size: 1.1em;
+}
+
+.highlight {
+  color: #96B5B4;
+  font-size: 1.1em;
 }
 
 .bold { font-family: "Proxima Nova SemiBold", "Helvetica", sans-serif; }
 
-nav.nav-main > ul > li > a { 
+nav.nav-main > ul > li > a {
   text-decoration: none;
   padding: 15px;
   display: block;
-  color: #4f5b67;
+  color: #A7ADBA;
   -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
 }
 
@@ -102,8 +109,8 @@ section.description, nav.nav-main{
             animation: fadein 2s;
 }
 
-section.description > p.titles { 
-  margin-top: -15px; 
+section.description > p.titles {
+  margin-top: -15px;
   font-size: 0.8em;
 }
 
@@ -132,10 +139,10 @@ section.description > p.titles {
 @-ms-keyframes fadein {
     from { opacity: 0; }
     to   { opacity: 1; }
-}​
+}
 
 /* Opera */
 @-o-keyframes fadein {
     from { opacity: 0; }
     to   { opacity: 1; }
-}​
+}
