@@ -38,7 +38,7 @@ section.description {
 section.image {
   right: 0px;
   top: 0px;
-  position: absolute;
+  position: fixed;
   z-index: -10;
 }
 
