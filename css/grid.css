@@ -49,6 +49,9 @@
             width:100%;
         }
 
+        .image {
+          width: 100%;
+        }
     }
 
     /* 2. 3 Column Grid 560px - 819px
@@ -73,6 +76,10 @@
 
         .description.col.span_3 {
           padding: 30px;
+        }
+
+        .image {
+          width:66.3333333333%;
         }
 
         .span_1 {
@@ -112,10 +119,8 @@
           padding: 40px;
         }
 
-        .image.col.span_2 {
-            padding: 20px;
-            width:100%;
-            text-align: center;
+        .image {
+          width:74.75%;
         }
 
         .span_1 {
@@ -159,8 +164,8 @@
           padding: 40px;
         }
 
-        .image.col.span_2 {
-          padding: 20px;
+        .image {
+          width: 30%;
         }
 
         .span_1 {
@@ -170,7 +175,7 @@
             width:30.4%;
         }
         .span_3 {
-            width:55.6%;
+            width:59.6%;
         }
         .span_4 {
             width:79.8%;
