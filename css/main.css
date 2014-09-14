@@ -45,9 +45,9 @@ section.image {
 section.image img {
   max-width: 100%;
   min-width: 100%;
-  -ms-filter: "progid:DXImageTransform.Microsoft.Alpha(Opacity=40)";
-  filter: alpha(opacity=40);
-  opacity: 0.05;
+  -ms-filter: "progid:DXImageTransform.Microsoft.Alpha(Opacity=10)";
+  filter: alpha(opacity=10);
+  opacity: 0.1;
 
 }
 @media screen and (min-width: 0px) and (max-width: 559px) {
