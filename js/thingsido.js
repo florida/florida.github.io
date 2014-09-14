@@ -21,12 +21,15 @@ var things_i_do = [
   "in <a href='chat.meatspac.es'>meatspace</a>",
   "mentoring at <a href='http://ladieslearningcode.com/'>Ladies Learning Code</a>",
   "making random gifs",
-  "staining coffee cups for <a href='http://coffeecupstain.tumblr.com'>art</a>"
+  "staining coffee cups for <a href='http://coffeecupstain.tumblr.com'>art</a>",
+  "glitching images on <a href='http://revisit.link'>revisit.link</a>"
 ];
 
 function display_things_i_do() {
   what_i_do = things_i_do[Math.floor(Math.random() * things_i_do.length)];
   document.getElementById("what_i_do").innerHTML = what_i_do;
+  var image_random_number = Math.floor((Math.random() * 27) + 1);
+  document.getElementById("floating-image").src = "images/image_" + image_random_number + ".gif<D-r>";
 }
 
 document.getElementById("what_i_do").addEventListener("click", function(){
