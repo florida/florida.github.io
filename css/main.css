@@ -32,11 +32,25 @@ body {
 }
 
 section.description {
-  padding: 50px;
   color: #65737E;
 }
+
+section.image {
+  right: 0px;
+  top: 0px;
+  position: absolute;
+  z-index: -10;
+}
+
+section.image img {
+  max-width: 100%;
+  min-width: 100%;
+  -ms-filter: "progid:DXImageTransform.Microsoft.Alpha(Opacity=40)";
+  filter: alpha(opacity=40);
+  opacity: 0.05;
+
+}
 @media screen and (min-width: 0px) and (max-width: 559px) {
-  section.description { padding: 40px; }
   section.description p { font-size: 1.1em !important; }
   section.description h1 { font-size: 2em !important; text-align: center }
   section.description > p.titles { font-size: 0.9em !important; }
