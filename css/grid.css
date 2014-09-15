@@ -22,6 +22,11 @@
 .span_1, .no-padding-left{
   padding: 0 !important;
 }
+
+.description.col.span_3 {
+  background-color: rgba(43,48,58,0.7);
+}
+
     /* 1. 1 Column Grid 0px - 559px
     -----------------------------------------------------------------------------
 
@@ -152,7 +157,7 @@
     @media screen and (min-width: 1040px) {
 
         .col {
-            margin-left:1%;
+          margin-left:1%;
           padding:0 1.5%;
         }
 
@@ -165,7 +170,7 @@
         }
 
         .image {
-          width: 30%;
+          width: 86.6%;
         }
 
         .span_1 {
