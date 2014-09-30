@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+  <html>
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=Edge,chrome=1" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1" />
+    <meta name="robots" content="noindex,nofollow" />
+    <title>404</title>
+    <link rel="stylesheet" href="css/main.css">
+    <style>
+      body {}
+      #floating-image {
+        width: 100%;
+        height: 100vh;
+      }
+      h1 {
+        margin: 50vh;
+        text-align: center;
+        font-size: 4em;
+      }
+
+      h1 a {
+        text-decoration: none;
+        color: #65737E;
+      }
+    </style>
+  </head>
+  <body>
+    <section id="floating-image">
+    </section>
+    <h1><a href="javascript:setBackgroundImage()">Nothing Here</a></h1>
+  <script type="text/javascript">
+    function setBackgroundImage() {
+      var image_random_number = Math.floor((Math.random() * 26) + 1);
+      var imageHolder = document.getElementById("floating-image")
+
+        imageHolder.style.backgroundImage = "url(images/image_" + image_random_number + ".gif)";
+
+    }
+
+    setBackgroundImage();
+
+  </script>
+  </body>
+</html>
+
