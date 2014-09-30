@@ -28,9 +28,16 @@ var things_i_do = [
 function display_things_i_do() {
   what_i_do = things_i_do[Math.floor(Math.random() * things_i_do.length)];
   document.getElementById("what_i_do").innerHTML = what_i_do;
-  var image_random_number = Math.floor((Math.random() * 26) + 1);
-  document.getElementById("floating-image").src = "images/image_" + image_random_number + ".gif";
+  setBackgroundImage();
 }
+
+function setBackgroundImage() {
+  var image_random_number = Math.floor((Math.random() * 26) + 1);
+  var imageHolder = document.getElementById("floating-image")
+
+  imageHolder.style.backgroundImage = "url(images/image_" + image_random_number + ".gif)";
+}
+
 
 document.getElementById("what_i_do").addEventListener("click", function(){
   display_things_i_do();
