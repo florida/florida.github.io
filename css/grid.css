@@ -23,10 +23,6 @@
   padding: 0 !important;
 }
 
-.description.col.span_3 {
-  background-color: rgba(43,48,58,0.7);
-}
-
     /* 1. 1 Column Grid 0px - 559px
     -----------------------------------------------------------------------------
 
@@ -54,7 +50,7 @@
             width:100%;
         }
 
-        .image {
+        #floating-image {
           width: 100%;
         }
     }
@@ -83,7 +79,7 @@
           padding: 30px;
         }
 
-        .image {
+        #floating-image {
           width:66.3333333333%;
         }
 
@@ -124,7 +120,7 @@
           padding: 40px;
         }
 
-        .image {
+        #floating-image {
           width:74.75%;
         }
 
@@ -169,7 +165,7 @@
           padding: 40px;
         }
 
-        .image {
+        #floating-image {
           width: 86.6%;
         }
 

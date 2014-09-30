@@ -37,21 +37,18 @@ section.description {
   color: #65737E;
 }
 
-section.image {
+section#floating-image {
   right: 0px;
   top: 0px;
   position: fixed;
   z-index: -10;
-}
-
-section.image img {
-  max-width: 100%;
-  min-width: 100%;
   -ms-filter: "progid:DXImageTransform.Microsoft.Alpha(Opacity=10)";
   filter: alpha(opacity=10);
   opacity: 0.05;
-
+  min-height: 100vh;
+  background-size: 100%;
 }
+
 @media screen and (min-width: 0px) and (max-width: 559px) {
   section.description p { font-size: 1.1em !important; }
   section.description h1 { font-size: 2em !important; text-align: center }
@@ -127,6 +124,10 @@ section.description, nav.nav-main{
 section.description > p.titles {
   margin-top: -15px;
   font-size: 0.8em;
+}
+
+.description.col.span_3 {
+  background-color: rgba(43,48,58,0.5);
 }
 
 #what_i_do {
