@@ -17,7 +17,7 @@ var things_i_do = [
   "teaching programming at Kodermine",
   "learning functional programming",
   "obsessing over BMO",
-  "making weird faces in <a href='chat.meatspac.es'>meatspace</a>",
+  "making weird faces in <a href='http://chat.meatspac.es'>meatspace</a>",
   "in <a href='chat.meatspac.es'>meatspace</a>",
   "mentoring at <a href='http://ladieslearningcode.com/'>Ladies Learning Code</a>",
   "making random gifs",
