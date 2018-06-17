@@ -50,7 +50,7 @@ body {
   margin: 1rem auto;
 }
 
-.content>a:hover {
+.content>a:hover, .content>a:active {
   background-color: var(--color-red);
   color: var(--color-primary);
   border-radius: 20% 40% 30% 30%;
@@ -162,7 +162,7 @@ body {
   animation: brif 10s ease-in-out alternate infinite;
 }
 
-.wigglewiggle>div:hover {
+.wigglewiggle>div:hover, .wigglewiggle>div:active {
   opacity: 0.5;
   border-radius: 50%;
   animation: huehover 1s ease-in-out alternate infinite;
