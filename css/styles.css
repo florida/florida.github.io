@@ -1,0 +1,29 @@
+:root {
+  --base-white: #ffffff;
+  --base-black: #000000;
+  --base-red: #f07178;
+  --base-orange: #f78c6c;
+  --base-yellow: #ffcb6b;
+  --base-green: #c3e88d;
+  --base-cyan: #89ddff;
+  --base-blue: #82aaff;
+  --base-paleblue: #b2ccd6;
+  --base-purple: #c792ea;
+  --base-brown: #916b53;
+  --base-pink: #ff9cac;
+  --base-violet: #bb80b3;
+
+  /* Dark Theme */
+  --dark-bg-color: #0f111a;
+  --dark-accent-color: #80cbc4;
+
+  /* Theme */
+}
+
+[data-theme="dark"] {
+  --color-bg: #000000;
+}
+
+body {
+  font-family: "Roboto Mono", monospace;
+}
