@@ -16,8 +16,13 @@
 </head>
 <body>
     <header>
-        <h1>new.css Demo</h1>
+        <h1>Design System Demo</h1>
     </header>
+
+    <label>
+      <input onchange="switchTheme(event)" type="checkbox" id="checkbox" />
+      Dark / Light Mode Toggle
+    </label>
 
     <h1>Heading 1</h1>
     <p>This is paragraph text. Lorem ipsum dolor sit amet consectetur adipisicing elit.</p>
@@ -207,8 +212,18 @@
 
     <img src="https://elements.xz.style/assets/fuji-daniel-hehn.jpg" alt="Mt. Fuji">
 
-    <script async defer src="https://api.newcss.net/latest.js"></script>
-    <noscript><img src="https://api.newcss.net/noscript.gif" alt=""></noscript>
+    <script>
+      function switchTheme(e) {
+    if (e.target.checked) {
+        document.documentElement.setAttribute('data-theme', 'dark');
+        localStorage.setItem('theme', 'dark'); 
+    }
+    else {
+        document.documentElement.setAttribute('data-theme', 'light');
+        localStorage.setItem('theme', 'light');
+    }    
+}
+    </script>
 </body>
 
 </html>

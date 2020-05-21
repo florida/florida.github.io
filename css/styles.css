@@ -1,23 +1,7 @@
 :root {
-  --base-white: #ffffff;
-  --base-black: #000000;
-  --base-red: #f07178;
-  --base-orange: #f78c6c;
-  --base-yellow: #ffcb6b;
-  --base-green: #c3e88d;
-  --base-cyan: #89ddff;
-  --base-blue: #82aaff;
-  --base-paleblue: #b2ccd6;
-  --base-purple: #c792ea;
-  --base-brown: #916b53;
-  --base-pink: #ff9cac;
-  --base-violet: #bb80b3;
-
   /* Dark Theme */
   --bg-color: #0f111a;
   --accent-color: #80cbc4;
-
-  /* Theme */
 
   --nc-font-sans: "Roboto Mono", monospace;
   --nc-font-mono: "Roboto Mono", monospace;
@@ -51,7 +35,7 @@
 [data-theme="dark"] {
   --nc-tx-1: #b0bec5;
   --nc-tx-2: #e2f1f8;
-  --nc-bg-1: #102027;
+  --nc-bg-1: #141718;
   --nc-bg-2: #37474f;
   --nc-bg-3: #263238;
   --nc-lk-1: #ef9a9a;
