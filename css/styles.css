@@ -130,9 +130,39 @@ button {
   /* Set body font family and some finicky elements */
   font-family: var(--nc-font-sans);
 }
-table {
+
+section {
+  height: 100%;
+  overflow: hidden;
+}
+
+section img {
   height: 100%;
 }
+
+.window-title {
+  background: linear-gradient(90deg, var(--nc-lk-1), var(--nc-ac-1));
+  text-align: center;
+  padding: 0.5rem;
+}
+
+.window-title::after {
+  content: "✕";
+  float: right;
+}
+
+.window-content {
+  background: var(--nc-bg-2);
+  padding: 0.5rem;
+  height: calc(100% - 40px);
+}
+
+.window-image {
+  height: 100%;
+  overflow: hidden;
+  text-align: center;
+}
+
 .toggle {
   position: absolute;
   right: 10px;
@@ -142,7 +172,7 @@ table {
   grid-area: 3 / 1 / 12 / 7;
 }
 .div2 {
-  grid-area: 8 / 9 / auto / 14;
+  grid-area: 8 / 9 / 12 / 14;
   z-index: 1;
 }
 .about {
@@ -150,7 +180,7 @@ table {
 }
 
 .fashion {
-  grid-area: 6 / 16 / 12 / 24;
+  grid-area: 2 / 16 / 11 / 21;
 }
 
 body {
@@ -171,7 +201,7 @@ body {
 }
 
 main {
-  max-height: 100vh;
+  max-height: 95vh;
   display: grid;
   padding: 2rem;
   grid-template-columns: repeat(8, 50px);
@@ -269,7 +299,7 @@ header {
   background: var(--nc-bg-2);
   border-bottom: 1px solid var(--nc-bg-3);
   padding: 2rem 1.5rem 4rem;
-  grid-area: 1 / 1 / 3 / 8;
+  grid-area: 1 / 2 / 4 / 11;
 
   /* This sets the right and left margins to cancel out the body's margins. It's width is still the same, but the background stretches across the page's width. */
 
@@ -452,7 +482,8 @@ legend {
   padding: auto 0.5rem;
 }
 
-table {
+table,
+section {
   /* border-collapse sets the table's elements to share borders, rather than floating as separate "boxes". */
   box-shadow: 4px 4px 0px var(--nc-tx-1);
   border-collapse: collapse;
@@ -464,11 +495,6 @@ th {
   border: 1px solid var(--nc-bg-3);
   text-align: left;
   padding: 0.5rem;
-}
-
-th::after {
-  content: "✕";
-  float: right;
 }
 
 td {
