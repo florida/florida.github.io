@@ -79,12 +79,14 @@ body::after {
     transparent 2px
   );
   pointer-events: none;
+  z-index: 9999;
 }
 
 * {
   /* Reset margins and padding */
   margin: 0;
   padding: 0;
+  box-sizing: border-box;
 }
 
 address,
@@ -128,30 +130,36 @@ button {
   /* Set body font family and some finicky elements */
   font-family: var(--nc-font-sans);
 }
-
-.parent {
-  display: grid;
-  grid-template-columns: repeat(8, 1fr);
-  grid-template-rows: repeat(9, 1fr);
-  grid-column-gap: 0px;
-  grid-row-gap: 0px;
+table {
+  height: 100%;
+}
+.toggle {
+  position: absolute;
+  right: 10px;
 }
 
 .div1 {
-  grid-area: 1 / 1 / 8 / 6;
+  grid-area: 3 / 1 / 12 / 7;
 }
 .div2 {
-  grid-area: 4 / 5 / 7 / 9;
+  grid-area: 8 / 9 / auto / 14;
   z-index: 1;
+}
+.about {
+  grid-area: 4 / 8 / auto / 15;
+}
+
+.fashion {
+  grid-area: 6 / 16 / 12 / 24;
 }
 
 body {
   /* Center body in page */
   margin: 0 auto;
-  max-width: 800px;
-  padding: 2rem;
+  /* max-width: 800px; */
+  /* padding: 2rem; */
   border-radius: 6px;
-  overflow-x: hidden;
+  /* overflow-x: hidden; */
   word-break: break-word;
   overflow-wrap: break-word;
   background: var(--nc-bg-1);
@@ -160,6 +168,18 @@ body {
   color: var(--nc-tx-2);
   font-size: 1.03rem;
   line-height: 1.5;
+}
+
+main {
+  max-height: 100vh;
+  display: grid;
+  padding: 2rem;
+  grid-template-columns: repeat(8, 50px);
+  grid-template-rows: repeat(12, minmax(0, 1fr));
+  grid-column-gap: 0px;
+  grid-row-gap: 0px;
+  grid-auto-columns: 50px;
+  grid-gap: 10px;
 }
 
 ::selection {
@@ -249,17 +269,11 @@ header {
   background: var(--nc-bg-2);
   border-bottom: 1px solid var(--nc-bg-3);
   padding: 2rem 1.5rem 4rem;
+  grid-area: 1 / 1 / 3 / 8;
 
   /* This sets the right and left margins to cancel out the body's margins. It's width is still the same, but the background stretches across the page's width. */
 
   /* margin: -2rem calc(0px - (50vw - 50%)) 2rem; */
-  margin: 2rem 0;
-
-  /* Shorthand for:
-	margin-top: -2rem;
-	margin-bottom: 2rem;
-	margin-left: calc(0px - (50vw - 50%));
-	margin-right: calc(0px - (50vw - 50%)); */
 }
 
 header h1,
@@ -450,6 +464,11 @@ th {
   border: 1px solid var(--nc-bg-3);
   text-align: left;
   padding: 0.5rem;
+}
+
+th::after {
+  content: "✕";
+  float: right;
 }
 
 td {
