@@ -276,6 +276,12 @@ main {
   padding-right: 1rem;
 }
 
+@media (max-width: 768px) {
+  .container {
+    display: block;
+  }
+}
+
 ::selection {
   /* Set background color for selected text */
   background: var(--nc-ac-1);
