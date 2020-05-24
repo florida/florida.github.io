@@ -57,20 +57,21 @@
 
 body {
   /* font-family: "Roboto Mono", monospace; */
-  /* font-family: 'Major Mono Display', monospace; */
+  /* font-family: "Major Mono Display", monospace; */
   /* font-family: "Overpass Mono", monospace; */
   /* font-family: "VT323", monospace; */
   font-family: "Share Tech Mono", monospace;
   text-shadow: 0 0 5px var(--nc-tx-1);
 }
 
-body::after {
-  content: "";
-  position: fixed;
-  top: 0;
+main::after {
+  pointer-events: none;
+  display: block;
+  height: 100%;
   left: 0;
-  width: 100vw;
-  height: 100vh;
+  top: 0;
+  width: 100%;
+  content: "";
   background: repeating-linear-gradient(
     0deg,
     rgba(0, 0, 0, 0.15),
@@ -78,7 +79,8 @@ body::after {
     transparent 1px,
     transparent 2px
   );
-  pointer-events: none;
+  border-radius: 15px;
+  position: absolute;
   z-index: 9999;
 }
 
@@ -132,7 +134,7 @@ button {
 }
 
 section {
-  overflow: hidden;
+  /* overflow: hidden; */
 }
 
 article {
@@ -171,7 +173,8 @@ section img {
 }
 
 .div1 {
-  grid-column: 2 / 10;
+  grid-column: 1 / 5;
+  grid-row: 1 / 4;
 }
 .div2 {
   width: 18rem;
@@ -179,12 +182,22 @@ section img {
   bottom: 20px;
   left: 10px;
 }
+
 .about {
-  grid-column: 1/-1;
+  grid-column: 5/-1;
+  padding: 0 1.5rem;
 }
 
 .fashion {
   grid-column: 5/12;
+}
+
+.portfolio {
+  grid-column: 1/6;
+}
+
+.init {
+  grid-column: 1 / span 5;
 }
 
 #slide {
@@ -204,8 +217,8 @@ section img {
 body {
   /* Center body in page */
   margin: 0 auto;
-  max-width: 800px;
-  padding: 2rem;
+  /* max-width: 900px; */
+  padding: 0 2rem;
   border-radius: 6px;
   /* overflow-x: hidden; */
   word-break: break-word;
@@ -219,12 +232,35 @@ body {
 }
 
 main {
+  position: absolute;
+  right: 0;
+  background: var(--nc-bg-1);
+  max-width: 900px;
+  margin: 3rem 2rem;
+  padding: 1rem;
+  border: 20px solid;
+  border-radius: 20px;
+
+  border-radius: 2rem;
+  border: 1rem solid;
+  border-bottom-color: var(--nc-bg-3);
+  border-left-color: var(--nc-bg-3);
+  border-right-color: var(--nc-bg-3);
+  border-top-color: var(--nc-bg-3);
+
+  box-shadow: inset 0 0 18rem var(--nc-bg-1), inset 0 0 3rem var(--nc-bg-1),
+    0 0 10rem black;
+}
+
+.container {
   display: grid;
   grid-template-columns: repeat(12, minmax(0, 1fr));
   grid-column-gap: 0px;
   grid-row-gap: 0px;
   grid-auto-columns: 50px;
   grid-gap: 10px;
+  height: calc(100vh - 11rem);
+  overflow: auto;
 }
 
 ::selection {
@@ -239,7 +275,7 @@ h3,
 h4,
 h5,
 h6 {
-  line-height: 1;
+  line-height: 1.5;
   color: var(--nc-tx-1);
   padding-top: 0.875rem;
 }
@@ -313,8 +349,8 @@ blockquote *:last-child {
 header {
   background: var(--nc-bg-2);
   border-bottom: 1px solid var(--nc-bg-3);
-  padding: 2rem 1.5rem 4rem;
-  grid-column: 1 / -1;
+  padding: 2rem 1.5rem;
+  grid-column: 5 / -1;
 
   /* This sets the right and left margins to cancel out the body's margins. It's width is still the same, but the background stretches across the page's width. */
 
