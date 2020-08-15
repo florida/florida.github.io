@@ -186,6 +186,10 @@ section img {
   grid-column: 1/6;
 }
 
+.projects {
+  grid-column: span 7;
+}
+
 .init {
   grid-column: 1 / span 7;
 }
@@ -206,7 +210,7 @@ section img {
 
 body {
   margin: 0 auto;
-  max-width: 900px;
+  max-width: 1000px;
   padding: 2rem;
   border-radius: 6px;
   /* overflow-x: hidden; */
