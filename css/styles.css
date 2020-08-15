@@ -4,17 +4,18 @@
 
   --nc-font-sans: "Roboto Mono", monospace;
   --nc-font-mono: "Roboto Mono", monospace;
+
   --nc-tx-1: #102027;
   --nc-tx-2: #050505;
   --nc-bg-1: #e2f1f8;
   --nc-bg-2: #f8fdff;
   --nc-bg-3: #b0bec5;
-  --nc-lk-1: #0097a7;
+  --nc-lk-1: #2abfcf;
   --nc-lk-2: #006978;
   --nc-lk-tx: #ffffff;
-  --nc-ac-1: #ef9a9a;
+  --nc-ac-1: #eeadad;
   --nc-ac-tx: #102027;
-  --nc-ac-glow: #ef9a9a;
+  --nc-ac-glow: #a7f3ff;
 }
 /* 
 @media (prefers-color-scheme: dark) {
@@ -38,10 +39,10 @@
   --nc-bg-1: #141718;
   --nc-bg-2: #37474f;
   --nc-bg-3: #263238;
-  --nc-lk-1: #ef9a9a;
+  --nc-lk-1: #eeadad;
   --nc-lk-2: #ba6b6c;
   --nc-lk-tx: #ffffff;
-  --nc-ac-1: #0097a7;
+  --nc-ac-1: #2abfcf;
   --nc-ac-tx: #ffffff;
   --nc-ac-glow: #b0bec5;
 }
@@ -176,7 +177,7 @@ section img {
 }
 
 .projects {
-  grid-column: span 7;
+  grid-column: 4 / span 6;
 }
 
 .init {
