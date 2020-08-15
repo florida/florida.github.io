@@ -65,17 +65,6 @@ dl::after {
   content: "}";
 }
 
-body {
-  /* font-family: "Roboto Mono", monospace; */
-  /* font-family: "Major Mono Display", monospace; */
-  /* font-family: "Overpass Mono", monospace; */
-  /* font-family: "VT323", monospace; */
-  font-family: "Share Tech Mono", monospace;
-  text-shadow: 0 0 5px var(--nc-ac-glow);
-}
-
-
-
 * {
   /* Reset margins and padding */
   margin: 0;
@@ -117,16 +106,16 @@ video {
   margin-bottom: 1rem;
 }
 
+html {
+  scroll-behavior: smooth;
+}
+
 html,
 input,
 select,
 button {
   /* Set body font family and some finicky elements */
   font-family: var(--nc-font-sans);
-}
-
-section {
-  /* overflow: hidden; */
 }
 
 article {
@@ -209,6 +198,13 @@ section img {
 }
 
 body {
+    /* font-family: "Roboto Mono", monospace; */
+  /* font-family: "Major Mono Display", monospace; */
+  /* font-family: "Overpass Mono", monospace; */
+  /* font-family: "VT323", monospace; */
+  font-family: "Share Tech Mono", monospace;
+  text-shadow: 0 0 5px var(--nc-ac-glow);
+
   margin: 0 auto;
   max-width: 1000px;
   padding: 2rem;
