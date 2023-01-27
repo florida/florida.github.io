@@ -1,21 +1,32 @@
 @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap');
 
-body {
-  font-family: 'Inter', sans-serif;
-  /* border-top: 5px solid #000; */
-  
+:root {
+  --color-bg: #fff;
+  --color-primary: #000;
+  --color-red: #e98398;
+  --color-brown: #cab2b2;
 }
 
-.container-borders {
+body {
+  font-family: 'Inter', sans-serif;
+  border-top: 5px solid #000;
+}
+
+.container-borders, header {
   max-width: 72em;
   margin: 0 auto;
   border-left: 1px solid #000;
   border-right: 1px solid #000;
 }
 
-header {
+header::after {
+	content: "";
   border-bottom: 1px solid #000;
 /*   box-shadow: 2px 2px #000; */
+}
+
+hr {
+	margin: 0;
 }
 
 header h1 {
@@ -23,8 +34,7 @@ header h1 {
 	font-size: 2rem;
 }
 
-
-.menu__container, nav {
+header, nav {
   display: flex;
 }
 
@@ -108,5 +118,24 @@ section {
 
 .window {
   border: 1px solid #000;
-  padding: 
+}
+
+.window-title {
+	background: linear-gradient(270deg, var(--color-bg), var(--color-primary));
+    text-align: center;
+    padding: 0.5rem;
+}
+
+.window-title::after {
+	content: "✕";
+	float: right;
+}
+
+.external {
+	display: flex;
+	justify-content: space-around; 
+}
+
+.external img {
+	width: 300px;
 }
