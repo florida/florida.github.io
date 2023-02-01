@@ -1,0 +1,59 @@
+<div class="header__container">
+  <header>
+    <div class="header__title-container">
+      <a href="#">Florida Elago</a>
+    </div>
+    <nav>
+      <a href="/">Home</a>
+      <a href="/about">About</a>
+      <a href="/projects">Projects</a>
+      <a href="/post">Writing</a>
+    </nav>
+  </header>
+</div>
+<style>
+  header,
+  nav {
+    display: flex;
+  }
+
+  .header__container {
+    position: sticky;
+    top: 0;
+    border-bottom: 1px solid var(--nc-bg-3);
+    z-index: 1;
+  }
+
+  .header__title-container {
+    flex-grow: 1;
+    padding-left: 1rem;
+    padding-top: 1rem;
+    padding-bottom: 1rem;
+  }
+
+  .header__title-container a {
+    font-weight: 600;
+    font-size: 2rem;
+    text-decoration: none;
+    color: var(--nc-tx-black);
+  }
+
+  header > nav > a {
+    border-left: 1px solid var(--nc-bg-3);
+    padding: 0 1rem;
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-decoration: none;
+    color: var(--nc-tx-black);
+  }
+
+  header > nav > a:active {
+    box-shadow: inset 2px 2px var(--nc-bg-3);
+  }
+
+  header > nav > a:last-child {
+    border-right: 0;
+  }
+</style>

@@ -1,0 +1,85 @@
+---
+import Layout from "../layouts/Layout.astro";
+const doodle = `:doodle {
+  @grid: 10 / 80vmin;
+}
+
+background: #000;
+transition: @rand(500ms) ease;
+
+border-radius: @pick(
+  100% 0 0 0,
+  0 100% 0 0,
+  0 0 100% 0,
+  0 0 0 100%
+);`;
+---
+
+<Layout title="HELLO">
+	<main>
+		<section class="outlined hero">
+			<h1>Hi I'm Florida!</h1>
+			<p>I a bla, I do bla and do blaalall specializing in bla and lalalal</p>
+		</section>
+		<section class="outlined">
+			<article class="retro__window">
+				<div class="retro__title-bar">hello.sh</div>
+				<div class="terminal">
+					<pre class="loading">$ HELLO WORLD!</pre>
+				</div>
+			</article>
+		</section>
+		<section class="outlined art">
+			<css-doodle class="doodles" click-to-update>{doodle}</css-doodle>
+		</section>
+		<section class="outlined">
+			<h2>You can find me</h2>
+			<div class="grid col-3">
+				<article class="retro__window">
+					<div class="retro__title-bar">Instagram</div>
+					<div class="content">
+						<img
+							src="https://www.exposureguide.com/media/macro-challenge.jpg"
+							alt=""
+						/>
+					</div>
+				</article>
+				<article class="retro__window">
+					<div class="retro__title-bar">Twitter</div>
+					<div class="content">
+						<img
+							src="https://www.exposureguide.com/media/macro-challenge.jpg"
+							alt=""
+						/>
+					</div>
+				</article>
+				<article class="retro__window">
+					<div class="retro__title-bar">Coffee</div>
+					<div class="content">
+						<img
+							src="https://www.exposureguide.com/media/macro-challenge.jpg"
+							alt=""
+						/>
+					</div>
+				</article>
+			</div>
+		</section>
+		<section class="outlined with-cells">
+			<div>
+				<h1>HI</h1>
+			</div>
+			<div>
+				<h2>HELLO</h2>
+			</div>
+		</section>
+	</main>
+</Layout>
+<style>
+	.art {
+		display: flex;
+		align-items: center;
+		justify-content: center;
+	}
+	.doodles {
+	}
+</style>
