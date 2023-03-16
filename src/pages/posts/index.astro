@@ -3,23 +3,17 @@ import Layout from "../../layouts/Layout.astro";
 const allPosts = await Astro.glob("./*.md");
 ---
 
-<Layout title="Post">
+<Layout title="Posts">
   <main>
-    <ul>
-
-    </ul>
-    {allPosts.map((post) => (
-      <li><a href={post.url}>{post.frontmatter.title}</a></li>
-    ))}
-    <article class="outlined">
-        <h1>Hello</h1>
-        <p>What's up</p>
-        <p>
-          Lorem ipsum dolor, sit amet consectetur adipisicing elit. Voluptates
-          consequuntur corporis necessitatibus esse inventore praesentium omnis,
-        error saepe labore repellendus sint dolorum sunt molestias magnam at ab
-        fugit voluptatibus autem?
-      </p>
-    </article>
+    {
+      allPosts.map((post) => (
+        <article class="outlined">
+          <a href={post.url}>
+            <h2>{post.frontmatter.title}</h2>
+          </a>
+          <p>{post.frontmatter.description}</p>
+        </article>
+      ))
+    }
   </main>
 </Layout>

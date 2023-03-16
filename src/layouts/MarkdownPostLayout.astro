@@ -5,10 +5,16 @@ const { frontmatter } = Astro.props;
 
 <Layout title={frontmatter.title}>
   <main>
-    <p>{frontmatter.pubDate.slice(0, 10)}</p>
-    <p><em>{frontmatter.description}</em></p>
-    <p>Written by: {frontmatter.author}</p>
-    <img src={frontmatter.image.url} width="300" alt={frontmatter.image.alt} />
-    <slot />
+    <article class="outlined">
+      <p>{frontmatter.pubDate.slice(0, 10)}</p>
+      <p><em>{frontmatter.description}</em></p>
+      <p>Written by: {frontmatter.author}</p>
+      <img
+        src={frontmatter.image.url}
+        width="300"
+        alt={frontmatter.image.alt}
+      />
+      <slot />
+    </article>
   </main>
 </Layout>
