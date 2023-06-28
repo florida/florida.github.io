@@ -22,6 +22,9 @@ import Layout from "../layouts/Layout.astro";
   }
 
   .splice-skills-bw {
+    height: 100%;
+    display: flex;
+    align-items: center;
     background-color: hsla(178, 0%, 0%, 1);
     background-image: radial-gradient(
         at 28% 9%,
@@ -31,6 +34,13 @@ import Layout from "../layouts/Layout.astro";
       radial-gradient(at 51% 46%, hsla(214, 0%, 0%, 0.68) 0px, transparent 50%),
       radial-gradient(at 97% 4%, hsla(0, 0%, 100%, 0.43) 0px, transparent 50%),
       radial-gradient(at 5% 90%, hsla(359, 0%, 35%, 0.41) 0px, transparent 50%);
+  }
+
+  .splice-skills-bw h3 {
+    flex-grow: 1;
+    color: white;
+    text-align: center;
+    margin-bottom: 0;
   }
 </style>
 <Layout title="About">
@@ -54,35 +64,14 @@ import Layout from "../layouts/Layout.astro";
     <section class="outlined">
       <h2>Work Experience</h2>
     </section>
-    <section class="outlined">
+    <section class="outlined with-cells">
       <article>
         <h3>Splice</h3>
         <p>Senior Software Engineer</p>
-        <p>
-          During my time as a technical lead at Splice, I oversaw successful
-          product launches and several growth engineering initiatives. I led the
-          technical direction and the development and launch of Splice Skills,
-          resulting in a 15% increase in plan upgrades. I also led the migration
-          of customer data management and analytics to Segment, enabling the
-          growth team to streamline integration to tools such as Braze and
-          Google Analytics. Additionally, I conducted research and developed
-          initial prototypes for unifying our web platform's design systems.
-        </p>
       </article>
-    </section>
-    <section class="outlined">
       <article>
         <h3>Casper</h3>
         <p>Software Engineer</p>
-        <p>
-          At Casper, I implemented product listing interfaces using React
-          Native, led workshops for the site-wide React replatforming project,
-          and most notably, led a cross-functional project to improve web
-          performance. I integrated SpeedCurve and implemented several site
-          optimizations, resulting in an impressive 30% improvement in site
-          loading times, which significantly enhanced the overall customer
-          experience.
-        </p>
       </article>
     </section>
     <section class="outlined">
@@ -147,9 +136,7 @@ import Layout from "../layouts/Layout.astro";
         <article class="retro__window">
           <div class="retro__title-bar">Job</div>
           <div class="retro__content">
-            <div class="retro__padded-content">
-              <div class="splice-skills-bw"><h3>Splice Skills</h3></div>
-            </div>
+            <div class="splice-skills-bw"><h3>Splice Skills</h3></div>
           </div>
         </article>
         <article class="retro__window">

@@ -433,13 +433,15 @@ img {
   display: flex;
 }
 
-.with-cells>div {
+.with-cells>div,
+.with-cells>article {
   padding: 2rem;
   border-right: 1px solid var(--nc-bg-3);
   flex-grow: 1;
 }
 
-.with-cells>div:last-child {
+.with-cells>div:last-child,
+.with-cells>article:last-child {
   border: 0;
 }
 
