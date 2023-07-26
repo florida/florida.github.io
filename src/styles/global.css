@@ -53,8 +53,7 @@ header,
 footer {
   max-width: 72em;
   margin: 0 auto;
-  border-left: 1px solid var(--nc-bg-3);
-  border-right: 1px solid var(--nc-bg-3);
+  outline: 1px solid var(--nc-bg-3);
   background-color: var(--nc-bg-1);
 }
 
@@ -430,19 +429,22 @@ img {
 /* SPLIT */
 .with-cells {
   padding: 0;
-  display: flex;
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+  gap: 1px;
 }
 
 .with-cells>div,
 .with-cells>article {
   padding: 2rem;
-  border-right: 1px solid var(--nc-bg-3);
+  outline: 1px solid;
+
   flex-grow: 1;
 }
 
 .with-cells>div:last-child,
 .with-cells>article:last-child {
-  border: 0;
+  /* border: 0; */
 }
 
 /* RETRO ITEMS */
@@ -486,12 +488,10 @@ img {
 
 .col-2 {
   grid-template-columns: repeat(2, 1fr);
-  grid-gap: 1rem;
 }
 
 .col-3 {
   grid-template-columns: repeat(3, 1fr);
-  grid-gap: 1rem;
 }
 
 /* Terminal */
