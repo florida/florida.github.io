@@ -10,9 +10,12 @@ const navTitle = title === "Home" ? "Florida Elago" : title;
     </div>
     <nav>
       <a href="/">Home</a>
-      <a href="/about">About</a>
+      <a href="/photos">Photos</a>
+      <a href="/projects">Art</a>
+      <a href="/coffee">Coffee</a>
       <a href="/projects">Projects</a>
       <a href="/posts">Writing</a>
+      <a href="/about">About</a>
     </nav>
   </header>
 </div>
@@ -26,14 +29,13 @@ const navTitle = title === "Home" ? "Florida Elago" : title;
     position: sticky;
     top: 0;
     border-bottom: 1px solid var(--nc-bg-3);
+    border-top: 1px solid var(--nc-bg-3);
     z-index: 1;
   }
 
   .header__title-container {
-    flex-grow: 1;
-    padding-left: 1rem;
-    padding-top: 1rem;
-    padding-bottom: 1rem;
+    padding: 1rem;
+    flex-basis: 250px;
   }
 
   .header__title-container a {
@@ -41,6 +43,9 @@ const navTitle = title === "Home" ? "Florida Elago" : title;
     font-size: 2rem;
     text-decoration: none;
     color: var(--nc-tx-black);
+    white-space: nowrap; /* Prevents line break */
+  flex-shrink: 0; /* Prevents shrinking */
+
   }
 
   header > nav > a {
@@ -52,6 +57,7 @@ const navTitle = title === "Home" ? "Florida Elago" : title;
     justify-content: center;
     text-decoration: none;
     color: var(--nc-tx-black);
+    width: 100%;
   }
 
   header > nav > a:active {
@@ -60,5 +66,9 @@ const navTitle = title === "Home" ? "Florida Elago" : title;
 
   header > nav > a:last-child {
     border-right: 0;
+  }
+
+  nav {
+    width: 100%;
   }
 </style>
