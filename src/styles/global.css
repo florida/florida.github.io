@@ -464,7 +464,7 @@ img {
 }
 
 .retro__title-bar {
-  background: linear-gradient(270deg, #B2E2F1, #FFA9E7);
+  background: linear-gradient(270deg, #F4BBD3, white);
   text-align: center;
   padding: 0.5rem;
   /* border-radius: 1rem 1rem 0 0; */
