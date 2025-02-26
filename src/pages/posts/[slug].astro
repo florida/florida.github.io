@@ -1,0 +1,33 @@
+---
+import { ghostClient } from '../../lib/ghost';
+import Layout from '../../layouts/Layout.astro';
+export async function getStaticPaths() {
+    const posts = await ghostClient.posts
+        .browse({
+            limit: 'all',
+        })
+        .catch((err) => {
+            console.error(err);
+        });
+    return posts.map((post) => {
+        return {
+            params: {
+                slug: post.slug,
+            },
+            props: {
+                post: post,
+            },
+        };
+    });
+}
+const { post } = Astro.props;
+---
+<Layout title="Posts">
+    <main>
+      <article class="outlined">
+        <h2>{post.title}</h2>
+        <Fragment set:html={post.html} />
+
+      </article>
+    </main>
+</Layout>
