@@ -4,6 +4,7 @@ import Layout from '../../layouts/Layout.astro';
 export async function getStaticPaths() {
     const posts = await ghostClient.posts
         .browse({
+            filter: 'tag:writing',
             limit: 'all',
         })
         .catch((err) => {
