@@ -1,0 +1,140 @@
+:root {
+    --nc-font-sans: 'Noto Sans Mono', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol";
+    --nc-font-mono: 'Noto Sans Mono', monospace;
+    --nc-tx-white: #FFFFFF;
+    --nc-tx-black: #1A1A1A;
+    --nc-bg-1: #f5f3eb;
+    --nc-bg-2: #f5f3eb;
+    --nc-bg-3: #1A1A1A;
+    --nc-lk-1: #000000;
+    --nc-lk-2: #1A1A1A;
+    --nc-lk-tx: #FFFFFF;
+    --nc-ac-1: #FFFFFF;
+    --nc-ac-tx: #0C4047;
+  }
+  
+  /* @media (prefers-color-scheme: dark) {
+    :root {
+      --nc-tx-1: #ffffff;
+      --nc-tx-2: #eeeeee;
+      --nc-bg-1: #000000;
+      --nc-bg-2: #111111;
+      --nc-bg-3: #222222;
+      --nc-lk-1: #3291FF;
+      --nc-lk-2: #0070F3;
+      --nc-lk-tx: #FFFFFF;
+      --nc-ac-1: #7928CA;
+      --nc-ac-tx: #FFFFFF;
+    }
+  } */
+  
+  ::selection {
+    /* Set background color for selected text */
+    background: var(--nc-bg-3);
+    color: #fff;
+  }
+
+body {
+    font-family: var(--nc-font-sans);
+    font-optical-sizing: auto;
+    font-weight: 400;
+    font-size: 16px;
+    line-height: 1.5;
+}
+
+textarea,
+select,
+input {
+  accent-color: var(--nc-bg-3);
+  background: var(--nc-bg-1);
+  padding: 6px 12px;
+  margin-bottom: .5rem;
+  color: var(--nc-tx-black);
+  font-size: 1rem;
+  border: 1px solid var(--nc-bg-3) !important;
+  box-shadow: 1px 1px var(--nc-bg-3);
+  box-sizing: border-box;
+}
+
+textarea:focus,
+select:focus,
+input[type]:focus,
+input:focus {
+  border-color: var(--nc-tx-black);
+  background: var(--nc-bg-2);
+
+  outline: 0;
+}
+
+fieldset {
+  margin-top: 1rem;
+  padding: 2rem;
+  border: 1px solid var(--nc-bg-2);
+  border-radius: 4px;
+}
+
+legend {
+  padding: auto .5rem;
+}
+
+
+a button,
+button,
+input[type="submit"],
+input[type="reset"],
+input[type="button"] {
+  font-size: 1rem;
+  display: inline-block;
+  padding: 6px 12px;
+  text-align: center;
+  text-decoration: none;
+  white-space: nowrap;
+  background: var(--nc-bg-1) !important;
+  color: var(--nc-tx-black);
+  border: 1px solid var(--nc-bg-3);
+  box-shadow: 1px 1px var(--nc-bg-3);
+  box-sizing: border-box;
+  cursor: pointer;
+}
+
+a button[disabled],
+button[disabled],
+input[type="submit"][disabled],
+input[type="reset"][disabled],
+input[type="button"][disabled] {
+  cursor: default;
+  opacity: .5;
+
+  /* Set the [X] cursor while hovering a disabled link */
+  cursor: not-allowed;
+}
+
+.button:enabled:focus,
+.button:enabled:hover,
+button:enabled:focus,
+button:enabled:hover,
+input[type="submit"]:enabled:focus,
+input[type="submit"]:enabled:hover,
+input[type="reset"]:enabled:focus,
+input[type="reset"]:enabled:hover,
+input[type="button"]:enabled:focus,
+input[type="button"]:enabled:hover {
+  background: var(--nc-bg-2);
+  transform: translateY(-2px);
+  box-shadow: 2px 2px var(--nc-bg-3);
+}
+
+.button:enabled:active,
+button:enabled:active,
+input[type="submit"]:enabled:active,
+input[type="reset"]:enabled:active,
+input[type="button"]:enabled:active {
+  background: var(--nc-bg-2);
+  transform: translateY(0px);
+  border: 1px inset var(--nc-bg-3);
+  box-shadow: none;
+}
+
+.underline {
+    visibility: hidden;
+}
