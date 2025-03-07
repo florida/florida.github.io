@@ -2,6 +2,7 @@
 import Layout from "../layouts/Layout.astro";
 import { ghostClient } from '../lib/ghost';
 import { formatDate } from '../lib/format_date';
+const title ="Home";
 const doodle = `:doodle {
   @grid: 10 / 80vmin;
 }
@@ -40,7 +41,7 @@ const posts = await ghostClient.posts
     }) || [];
 ---
 
-<Layout title="Home">
+<Layout title={title}>
 	<main>
 		<section class="outlined">
 			<article class="retro__window">
@@ -105,6 +106,19 @@ const posts = await ghostClient.posts
 		<section class="outlined art">
 			<css-doodle class="doodles" click-to-update>{doodle}</css-doodle>
 		</section>
+
+		<section class="outlined">
+			<h1>Guestbook</h1>
+			<div id="cusdis_thread"
+			data-host="https://florida-cusdis.fly.dev"
+			data-app-id="4b37c3e5-e4fb-48cb-a569-cdb059f39f9d"
+			data-page-id={Astro.url}
+			data-page-url={Astro.url}
+			data-page-title={title}
+		></div>
+		</section>
+
+
 		
 	</main>
 </Layout>
