@@ -1,0 +1,24 @@
+---
+import Layout from "../../layouts/Layout.astro";
+import { ghostClient } from "../../lib/ghost";
+const posts = await ghostClient.posts.browse({
+	filter: 'tag:writing',
+	include: 'authors'
+})
+---
+
+<Layout title="Posts">
+  <main>
+    {
+      posts.map((post) => (
+        <article class="outlined">
+          <a href={`/writing/${post.slug}`}>
+            <h2>{post.title}</h2>
+          </a>
+
+          <p>{post.excerpt}</p>
+        </article>
+      ))
+    }
+  </main>
+</Layout>

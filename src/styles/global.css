@@ -404,6 +404,10 @@ mark {
   color: var(--nc-ac-tx);
 }
 
+small {
+  font-size: 0.8rem;
+}
+
 /* IMAGE */
 
 img {
@@ -420,6 +424,11 @@ img {
   padding: 2rem;
   border-bottom: 1px solid var(--nc-bg-3);
   display: block;
+}
+
+.outlined.header {
+  padding-top: 1rem;
+  padding-bottom: 1rem;
 }
 
 .outlined:last-child {
