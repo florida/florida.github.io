@@ -1,0 +1,140 @@
+---
+const { title } = Astro.props;
+const navTitle = title === "Home" ? "Florida Elago" : title;
+---
+
+<div class="header__container">
+  <header class="top">
+    <div class="header__title-container">
+      <a href="/">{navTitle}</a>
+    </div>
+    <label for="nav-toggle" class="nav-toggle-label">
+      <span>Menu</span>
+    </label>
+    <input type="checkbox" id="nav-toggle" class="nav-toggle" />
+    <nav>
+      <a href="/">Home</a>
+      <a href="/photos">Photos</a>
+      <a href="/writing">Writing</a>
+    </nav>
+  </header>
+</div>
+
+<style>
+  header {
+    display: flex;
+  }
+
+  nav {
+    display: flex;
+    width: 100%;
+  }
+
+  .header__container {
+    position: sticky;
+    top: 0;
+    border-bottom: 1px solid var(--nc-bg-3);
+    border-top: 1px solid var(--nc-bg-3);
+    z-index: 1;
+    background: var(--nc-bg-1);
+  }
+
+  .header__title-container {
+    padding: 1rem;
+    flex-basis: 250px;
+    flex-shrink: 0;
+  }
+
+  .header__title-container a {
+    font-weight: 600;
+    font-size: 2rem;
+    text-decoration: none;
+    color: var(--nc-tx-black);
+    white-space: nowrap;
+    flex-shrink: 0;
+  }
+
+  /* Navigation toggle styles */
+  .nav-toggle {
+    display: none;
+  }
+
+  .nav-toggle-label {
+    display: none;
+    padding: 1rem;
+    cursor: pointer;
+    align-items: center;
+    font-size: 1.2rem;
+    margin-left: auto;
+  }
+
+  header > nav > a {
+    border-left: 1px solid var(--nc-bg-3);
+    padding: 0 1rem;
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-decoration: none;
+    color: var(--nc-tx-black);
+    flex: 1;
+  }
+
+  header > nav > a:active {
+    box-shadow: inset 2px 2px var(--nc-bg-3);
+  }
+
+  header > nav > a:last-child {
+    border-right: 0;
+  }
+
+  /* Mobile styles */
+  @media (max-width: 790px) {
+    header {
+      flex-wrap: wrap;
+    }
+
+    .header__title-container {
+      flex: 1;
+    }
+
+    .nav-toggle-label {
+      display: flex;
+    }
+
+    nav {
+      flex-direction: column;
+      width: 100%;
+      max-height: 0;
+      overflow: hidden;
+      transition: max-height 0.3s ease-out;
+    }
+
+    .nav-toggle:checked ~ nav {
+      max-height: 400px;
+    }
+
+    header > nav > a {
+      padding: 1rem;
+      border-left: none;
+      border-top: 1px solid var(--nc-bg-3);
+      opacity: 0;
+      transform: translateY(-1rem);
+      transition: all 0.2s ease-out;
+    }
+
+    .nav-toggle:checked ~ nav > a {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    /* Stagger the animation of menu items */
+    nav > a:nth-child(1) { transition-delay: 0.1s; }
+    nav > a:nth-child(2) { transition-delay: 0.15s; }
+    nav > a:nth-child(3) { transition-delay: 0.2s; }
+    nav > a:nth-child(4) { transition-delay: 0.25s; }
+    nav > a:nth-child(5) { transition-delay: 0.3s; }
+    nav > a:nth-child(6) { transition-delay: 0.35s; }
+    nav > a:nth-child(7) { transition-delay: 0.4s; }
+  }
+</style>

@@ -1,0 +1,172 @@
+---
+import Layout from "../layouts/Layout.astro";
+import { ghostClient } from '../lib/ghost';
+import { formatDate } from '../lib/format_date';
+const doodle = `:doodle {
+  @grid: 10 / 80vmin;
+}
+
+background: #000;
+transition: @rand(500ms) ease;
+
+border-radius: @pick(
+  100% 0 0 0,
+  0 100% 0 0,
+  0 0 100% 0,
+  0 0 0 100%
+);`;
+
+const photos = await ghostClient.posts
+	.browse({
+		filter: 'tag:photo',
+		include: 'authors'
+	})
+	.catch((err) => {
+		console.error(err);
+	}) || [];
+
+const fleets = await ghostClient.posts.browse({
+	filter: 'tag:fleet'
+}) || [];
+
+const posts = await ghostClient.posts
+    .browse({
+        limit: 'all',
+		filter: 'tag:writing',
+		include: 'authors'
+    })
+    .catch((err) => {
+        console.error(err);
+    }) || [];
+---
+
+<Layout title="Home">
+	<main>
+		<section class="outlined">
+			<article class="retro__window">
+				<div class="retro__title-bar">hello.sh</div>
+				<div class="terminal">
+					<pre class="loading">$ Hi I'm Florida!</pre>
+				</div>
+			</article>
+		</section>
+		<!-- <section class="outlined header">
+			<h1>Stories</h1>
+			</section> -->
+			<section class="outlined">
+			<!-- Swipable CSS carousel with scroll snap -->
+			<div class="carousel">
+				{photos.map((photo) => (
+					<div class="carousel__item retro__window">
+						<div class="retro__title-bar">{photo.title}</div>
+						<img src={photo.feature_image} alt="">
+						<footer>
+						<small>
+							<time datetime={photo.published_at}>
+								{formatDate(photo.published_at)}
+							</time> by <a>{photo.authors[0].name}</a>
+						</small>
+					</footer>
+					</div>
+				))}
+			</div>
+		</section>
+		<section class="outlined">
+			<h1>Fleets</h1>
+			<article class="fleets">
+				{fleets.map((fleet) => (
+					<section class="retro__window">
+						<section class="retro__padded-content">
+							<p>{fleet.title}</p>
+					</section>
+					<footer>
+						<small>
+							<time datetime={fleet.published_at}>
+								{formatDate(fleet.published_at)}
+							</time> by <a>{fleet.authors?.[0]?.name || 'Flo'}</a>
+						</small>
+					</footer>	
+				</section>
+			))}
+		</section>
+		<section class="outlined">	
+			<h1>Writing</h1>
+			<article>
+				<ul style="list-style: none; padding: 0;">
+					{posts.map((post) => (
+						<li style="display: flex; justify-content: space-between;">
+							<a href={`/writing/${post.slug}`}>{post.title}</a> <time datetime={post.published_at}>{formatDate(post.published_at)}</time>
+						</li>
+					))}
+				</ul>
+			  </article>
+		</section>
+		
+		<section class="outlined art">
+			<css-doodle class="doodles" click-to-update>{doodle}</css-doodle>
+		</section>
+		
+	</main>
+</Layout>
+<style>
+	.art {
+		display: flex;
+		align-items: center;
+		justify-content: center;
+	}
+	.doodles {
+	}
+
+	.carousel {
+		display: flex;
+		gap: 1rem;
+		padding-bottom: 10px;
+		overflow-x: auto;
+		scroll-snap-type: x mandatory;
+		scroll-behavior: smooth;
+		scrollbar-width: none;
+		-webkit-overflow-scrolling: touch;
+	}
+
+	.carousel__item {
+		flex-shrink: 0; 
+		width: calc(100% / 5 - 16px);
+		height: 350px;
+		scroll-snap-align: start;
+		display: flex;
+		flex-direction: column;
+	}
+
+	.carousel__item img {
+		width: 100%;
+		flex: 1;
+		object-fit: cover;
+		min-height: 0;
+	}
+
+	.carousel__item footer {
+		flex-shrink: 0;
+		padding: 0.5rem;
+	}
+
+	@media (max-width: 1024px) {
+		.carousel__item {
+			width: calc(100% / 3 - 14px);
+		}
+	}
+
+	@media (max-width: 640px) {
+		.carousel__item {
+			width: calc(100% - 5px);
+			height: 500px;
+		}
+	}
+	
+	.fleets {
+		display: grid;
+		grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+		gap: 1rem;
+	}
+	
+	
+</style>

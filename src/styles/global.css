@@ -1,0 +1,582 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap');
+
+:root {
+  --nc-font-sans: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol";
+  --nc-font-mono: Consolas, monaco, 'Ubuntu Mono', 'Liberation Mono', 'Courier New', Courier, monospace;
+  --nc-tx-white: #FFFFFF;
+  --nc-tx-black: #1A1A1A;
+  --nc-bg-1: #f5f3eb;
+  --nc-bg-2: #f5f3eb;
+  --nc-bg-3: #1A1A1A;
+  --nc-lk-1: #000000;
+  --nc-lk-2: #1A1A1A;
+  --nc-lk-tx: #FFFFFF;
+  --nc-ac-1: #FFFFFF;
+  --nc-ac-tx: #0C4047;
+}
+
+/* @media (prefers-color-scheme: dark) {
+  :root {
+    --nc-tx-1: #ffffff;
+    --nc-tx-2: #eeeeee;
+    --nc-bg-1: #000000;
+    --nc-bg-2: #111111;
+    --nc-bg-3: #222222;
+    --nc-lk-1: #3291FF;
+    --nc-lk-2: #0070F3;
+    --nc-lk-tx: #FFFFFF;
+    --nc-ac-1: #7928CA;
+    --nc-ac-tx: #FFFFFF;
+  }
+} */
+
+::selection {
+  /* Set background color for selected text */
+  background: var(--nc-bg-3);
+  color: #fff;
+}
+
+html {
+  overflow-y: overlay;
+  background: var(--nc-bg-3);
+}
+
+body {
+  font-family: "Noto Sans Mono", serif;
+  font-optical-sizing: auto;
+  font-weight: 400;
+  font-style: normal;
+  font-variation-settings:
+    "wdth" 100;
+  background: var(--nc-bg-1);
+  font-size: 1.03rem;
+}
+
+body > main,
+header.top,
+body > footer {
+  max-width: 80em;
+  margin: 0 auto;
+  outline: 1px solid var(--nc-bg-3);
+  background-color: var(--nc-bg-1);
+}
+
+hr {
+  border: 0;
+  height: 1px;
+  background: #333;
+  margin: 0;
+}
+
+/* HEADERS AND TEXT*/
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  line-height: 1;
+  color: var(--nc-tx-black);
+  padding-top: .875rem;
+  font-weight: 600;
+}
+
+h1,
+h2,
+h3 {
+  color: var(--nc-tx-black);
+  padding-bottom: 2px;
+  margin-bottom: 8px;
+}
+
+h4,
+h5,
+h6 {
+  margin-bottom: .3rem;
+}
+
+h1 {
+  font-size: 2.25rem;
+}
+
+h2 {
+  font-size: 1.85rem;
+}
+
+h3 {
+  font-size: 1.55rem;
+}
+
+h4 {
+  font-size: 1.25rem;
+}
+
+h5 {
+  font-size: 1rem;
+}
+
+h6 {
+  font-size: .875rem;
+}
+
+p {
+  margin-bottom: 1rem;
+  line-height: 1.5;
+}
+
+em {
+  font-style: italic;
+}
+
+b {
+  font-size: bold;
+}
+
+abbr:hover {
+  /* Set the '?' cursor while hovering an abbreviation */
+  cursor: help;
+}
+
+blockquote {
+  padding: 1.5rem;
+  background: var(--nc-bg-2);
+  border-left: 5px solid var(--nc-tx-black);
+}
+
+abbr {
+  cursor: help;
+}
+
+blockquote *:last-child {
+  padding-bottom: 0;
+  margin-bottom: 0;
+}
+
+/* LINKS */
+
+a {
+  color: var(--nc-tx-black);
+}
+
+a:hover {
+  color: var(--nc-tx-black);
+}
+
+/* FORMS */
+
+a button,
+button,
+input[type="submit"],
+input[type="reset"],
+input[type="button"] {
+  font-size: 1rem;
+  display: inline-block;
+  padding: 6px 12px;
+  text-align: center;
+  text-decoration: none;
+  white-space: nowrap;
+  background: var(--nc-bg-1);
+  color: var(--nc-tx-black);
+  border: 1px solid var(--nc-bg-3);
+  box-shadow: 1px 1px var(--nc-bg-3);
+  box-sizing: border-box;
+  cursor: pointer;
+}
+
+a button[disabled],
+button[disabled],
+input[type="submit"][disabled],
+input[type="reset"][disabled],
+input[type="button"][disabled] {
+  cursor: default;
+  opacity: .5;
+
+  /* Set the [X] cursor while hovering a disabled link */
+  cursor: not-allowed;
+}
+
+.button:enabled:focus,
+.button:enabled:hover,
+button:enabled:focus,
+button:enabled:hover,
+input[type="submit"]:enabled:focus,
+input[type="submit"]:enabled:hover,
+input[type="reset"]:enabled:focus,
+input[type="reset"]:enabled:hover,
+input[type="button"]:enabled:focus,
+input[type="button"]:enabled:hover {
+  background: var(--nc-bg-2);
+  transform: translateY(-2px);
+  box-shadow: 2px 2px var(--nc-bg-3);
+}
+
+.button:enabled:active,
+button:enabled:active,
+input[type="submit"]:enabled:active,
+input[type="reset"]:enabled:active,
+input[type="button"]:enabled:active {
+  background: var(--nc-bg-2);
+  transform: translateY(0px);
+  border: 1px inset var(--nc-bg-3);
+  box-shadow: none;
+}
+
+/* INPUTS */
+
+textarea,
+select,
+input {
+  accent-color: var(--nc-bg-3);
+  background: var(--nc-bg-1);
+  padding: 6px 12px;
+  margin-bottom: .5rem;
+  color: var(--nc-tx-black);
+  font-size: 1rem;
+  border: 1px solid var(--nc-bg-3);
+  box-shadow: 1px 1px var(--nc-bg-3);
+  box-sizing: border-box;
+}
+
+textarea:focus,
+select:focus,
+input[type]:focus,
+input:focus {
+  border-color: var(--nc-tx-black);
+  background: var(--nc-bg-2);
+
+  outline: 0;
+}
+
+fieldset {
+  margin-top: 1rem;
+  padding: 2rem;
+  border: 1px solid var(--nc-bg-2);
+  border-radius: 4px;
+}
+
+legend {
+  padding: auto .5rem;
+}
+
+
+code,
+pre,
+kbd,
+samp {
+  /* Set the font family for monospaced elements */
+  font-family: var(--nc-font-mono);
+}
+
+code,
+samp,
+kbd,
+pre {
+  background: var(--nc-bg-3);
+  color: #FFF;
+  padding: 3px 6px;
+  font-size: 0.9rem;
+}
+
+kbd {
+  /* Makes the kbd element look like a keyboard key */
+  border-bottom: 3px solid var(--nc-bg-2);
+}
+
+pre {
+  padding: 1rem 1.4rem;
+  max-width: 100%;
+  overflow: auto;
+}
+
+pre code {
+  /* When <code> is in a <pre>, reset it's formatting to blend in */
+  background: inherit;
+  font-size: inherit;
+  color: inherit;
+  border: 0;
+  padding: 0;
+  margin: 0;
+}
+
+code pre {
+  /* When <pre> is in a <code>, reset it's formatting to blend in */
+  display: inline;
+  background: inherit;
+  font-size: inherit;
+  color: inherit;
+  border: 0;
+  padding: 0;
+  margin: 0;
+}
+
+/* DETAILS */
+
+details {
+  /* Make the <details> look more "clickable" */
+  padding: .6rem 1rem;
+  background: var(--nc-bg-2);
+  border: 1px solid var(--nc-bg-2);
+  border-radius: 4px;
+}
+
+summary {
+  /* Makes the <summary> look more like a "clickable" link with the pointer cursor */
+  cursor: pointer;
+  font-weight: bold;
+}
+
+details[open] {
+  /* Adjust the <details> padding while open */
+  padding-bottom: .75rem;
+}
+
+details[open] summary {
+  /* Adjust the <details> padding while open */
+  margin-bottom: 6px;
+}
+
+details[open]>*:last-child {
+  /* Resets the bottom margin of the last element in the <details> while <details> is opened. This prevents double margins/paddings. */
+  margin-bottom: 0;
+}
+
+/* Definitions */
+
+dt {
+  font-weight: bold;
+}
+
+dd::before {
+  /* Add an arrow to data table definitions */
+  content: '→ ';
+}
+
+/* Table */
+
+table {
+  /* border-collapse sets the table's elements to share borders, rather than floating as separate "boxes". */
+  border-collapse: collapse;
+  width: 100%
+}
+
+td,
+th {
+  border: 1px solid var(--nc-bg-3);
+  text-align: left;
+  padding: .5rem;
+}
+
+th {
+  background: var(--nc-bg-2);
+}
+
+table caption {
+  font-weight: bold;
+  margin-bottom: .5rem;
+}
+
+textarea {
+  /* Don't let the <textarea> extend off the screen naturally or when dragged by the user */
+  max-width: 100%;
+}
+
+ol,
+ul {
+  /* Replace the browser default padding */
+  padding-left: 2rem;
+}
+
+li {
+  margin-top: .4rem;
+}
+
+ul ul,
+ol ul,
+ul ol,
+ol ol {
+  margin-bottom: 0;
+}
+
+mark {
+  padding: 3px 6px;
+  background: var(--nc-ac-1);
+  color: var(--nc-ac-tx);
+}
+
+small {
+  font-size: 0.8rem;
+}
+
+/* IMAGE */
+
+img {
+  max-width: 100%;
+}
+
+/* ARTICLE */
+/* article {
+  padding: 3rem;
+} */
+
+/* OUTLINED SECTIONS */
+.outlined {
+  padding: 2rem;
+  border-bottom: 1px solid var(--nc-bg-3);
+  display: block;
+}
+
+.outlined.header {
+  padding-top: 1rem;
+  padding-bottom: 1rem;
+}
+
+.outlined:last-child {
+  border: 0;
+}
+
+.hero>h1 {
+  margin-top: 5rem;
+  font-size: 5rem;
+}
+
+/* SPLIT */
+.with-cells {
+  padding: 0;
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+  gap: 1px;
+}
+
+.with-cells>div,
+.with-cells>article {
+  padding: 2rem;
+  outline: 1px solid;
+
+  flex-grow: 1;
+}
+
+.with-cells>div:last-child,
+.with-cells>article:last-child {
+  /* border: 0; */
+}
+
+/* RETRO ITEMS */
+
+.retro__window {
+  border: 1px solid var(--nc-bg-3);
+  box-shadow: 3px 3px var(--nc-bg-3);
+  display: flex;
+  flex-direction: column;
+  border-radius: 1rem;
+  overflow: hidden;
+}
+
+.retro__title-bar {
+  background: linear-gradient(270deg, #F4BBD3, white);
+  text-align: center;
+  padding: 0.5rem;
+  /* border-radius: 1rem 1rem 0 0; */
+}
+
+.retro__content {
+  flex-grow: 1;
+}
+
+.retro__window img {
+  width: 100%;
+  display: block;
+}
+
+.retro__padded-content {
+  padding: 1rem;
+}
+
+.retro__title-bar::after {
+  content: "✕";
+  float: right;
+}
+
+.retro__window > footer {
+  border-top: 1px solid var(--nc-bg-3);
+  box-shadow: inset 1px 1px 0px gray;
+  text-align: right;
+  padding: 0.5rem;
+  border-radius: 0 0 1rem 1rem;
+}
+
+/* last p tag has no bottom margin */
+p:last-child {
+  margin-bottom: 0;
+}
+
+/* GRID */
+
+.grid {
+  display: grid;
+}
+
+.col-2 {
+  grid-template-columns: repeat(2, 1fr);
+}
+
+.col-3 {
+  grid-template-columns: repeat(3, 1fr);
+}
+
+/* Terminal */
+
+.terminal {
+  padding: 1rem;
+  background: var(--nc-tx-black);
+  color: #cab2b2;
+}
+
+.terminal pre {
+  font-size: 2rem;
+}
+
+.loading {
+  overflow: hidden;
+  border-right: 2px solid rgba(255, 255, 255, .75);
+  display: inline-block;
+  vertical-align: bottom;
+  -webkit-animation: 4blinkTextCursor 500ms steps(44) infinite normal;
+  animation: ellipsis steps(17, end) 4s infinite alternate, blinkTextCursor 500ms steps(44) infinite normal;
+  content: "\2026";
+  /* ascii code for the ellipsis character */
+  width: 0px;
+}
+
+@keyframes ellipsis {
+  to {
+    width: 10em;
+  }
+}
+
+@-webkit-keyframes ellipsis {
+  to {
+    width: 10em;
+  }
+}
+
+@keyframes blinkTextCursor {
+  from {
+    border-right-color: rgba(255, 255, 255, .75);
+  }
+
+  to {
+    border-right-color: transparent;
+  }
+}
+
+
+@-webkit-keyframes blinkTextCursor {
+  from {
+    border-right-color: rgba(255, 255, 255, .75);
+  }
+
+  to {
+    border-right-color: transparent;
+  }
+}

@@ -1,0 +1,43 @@
+---
+import Layout from "../../layouts/Layout.astro";
+import { ghostClient } from "../../lib/ghost";
+import { formatDate } from "../../lib/format_date";
+const photos = await ghostClient.posts
+	.browse({
+		filter: 'tag:photo',
+		include: 'authors'
+	})
+    .catch((err) => {
+        console.error(err);
+    }) || [];
+---
+
+<Layout title="Photos">
+    <main>
+        <section class="outlined">
+            <article class="photos">
+                {photos.map((photo) => (
+                    <section class="retro__window">
+                        <div class="retro__title-bar">{photo.title}</div>
+                        <img class="photo" src={photo.feature_image} alt="">
+                        <footer>
+                            <small>
+                                <time datetime={photo.published_at}>
+                                    {formatDate(photo.published_at)}
+                                </time> by <a>{photo.authors?.[0]?.name || 'Flo'}</a>
+                            </small>
+                        </footer>
+                    </section>
+                ))}
+            </article>
+        </section>
+    </main>
+</Layout>
+
+<style>
+    .photo {
+        width: 400px;
+        height: 400px;
+        object-fit: cover;
+    }
+</style>
