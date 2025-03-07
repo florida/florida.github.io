@@ -19,7 +19,7 @@ jobs:
 
       - name: Create .env file
         run: |
-          echo "GHOST_API_KEY=${{ secrets.GHOST_API_KEY }}" >> .env
+          echo "GHOST_API_KEY=${{ secrets.CONTENT_API_KEY }}" >> .env
           echo "GHOST_URL=${{ secrets.GHOST_URL }}" >> .env
 
       - name: Install, build, and upload your site
