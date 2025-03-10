@@ -38,7 +38,7 @@
 
 html {
   overflow-y: overlay;
-  background: var(--nc-bg-3);
+  background: var(--nc-bg-1);
 }
 
 body {
@@ -493,8 +493,13 @@ img {
 }
 
 .retro__title-bar::after {
-  content: "✕";
+  content: "☽";
   float: right;
+}
+
+.retro__title-bar::before {
+  content: "☾";
+  float: left;
 }
 
 .retro__window > footer {
@@ -578,5 +583,25 @@ p:last-child {
 
   to {
     border-right-color: transparent;
+  }
+}
+
+@media (max-width: 640px) {
+  body {
+    font-size: .8em;
+  }
+
+  
+
+  .outlined {
+    padding: 1rem;
+  }
+
+  .terminal {
+    padding: 0;
+  } 
+
+  .terminal pre {
+    font-size: 1.5rem;
   }
 }

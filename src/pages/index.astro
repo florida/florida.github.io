@@ -2,6 +2,7 @@
 import Layout from "../layouts/Layout.astro";
 import { ghostClient } from '../lib/ghost';
 import { formatDate } from '../lib/format_date';
+import Terminal from "../components/Terminal.astro";
 const title ="Home";
 const doodle = `:doodle {
   @grid: 10 / 80vmin;
@@ -43,14 +44,8 @@ const posts = await ghostClient.posts
 
 <Layout title={title}>
 	<main>
-		<section class="outlined">
-			<article class="retro__window">
-				<div class="retro__title-bar">hello.sh</div>
-				<div class="terminal">
-					<pre class="loading">$ Hi I'm Florida!</pre>
-				</div>
-			</article>
-		</section>
+		<Terminal />
+
 		<!-- <section class="outlined header">
 			<h1>Stories</h1>
 			</section> -->

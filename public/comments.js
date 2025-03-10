@@ -15,82 +15,120 @@ const makeIframeContent = (target) => {
     <script>
       window.CUSDIS_LOCALE = ${JSON.stringify(window.CUSDIS_LOCALE)}
       window.__DATA__ = ${JSON.stringify(target.dataset)}
+
+      let lastHeight = 0;
+      let updateTimer;
+
+      function updateParentHeight() {
+        clearTimeout(updateTimer);
+        updateTimer = setTimeout(() => {
+          const height = Math.max(
+            document.documentElement.offsetHeight,
+            document.documentElement.scrollHeight,
+            document.body.offsetHeight,
+            document.body.scrollHeight
+          );
+          
+          if (height !== lastHeight) {
+            lastHeight = height;
+            window.parent.postMessage(JSON.stringify({
+              from: 'cusdis',
+              event: 'resize',
+              data: height
+            }), '*');
+          }
+        }, 100);
+      }
+
+      const observer = new MutationObserver((mutations) => {
+        const hasContentChange = mutations.some(mutation => 
+          mutation.type === 'childList' || 
+          (mutation.type === 'attributes' && mutation.target !== document.body)
+        );
+        
+        if (hasContentChange) {
+          updateParentHeight();
+        }
+      });
+
+      window.addEventListener('load', () => {
+        observer.observe(document.body, {
+          childList: true,
+          subtree: true,
+          attributes: true
+        });
+        updateParentHeight();
+      });
+
+      document.addEventListener('DOMContentLoaded', updateParentHeight);
+      window.addEventListener('resize', updateParentHeight);
     <\/script>
     <style>
-      :root {
-        color-scheme: light;
+      :root { color-scheme: light; }
+      html, body {
+        margin: 0;
+        padding: 0;
+        min-height: 100%;
+      }
+      #root {
+        padding: 1rem;
+      }
+      .cusdis-textarea {
+        min-height: 100px;
       }
     </style>
   </head>
   <body>
     <div id="root"></div>
-    <script src="${iframeJsPath}" type="module">
-      
-    <\/script>
+    <script src="${iframeJsPath}" type="module"><\/script>
   </body>
 </html>`;
 };
-let singleTonIframe;
+
 function createIframe(target) {
-  if (!singleTonIframe) {
-    singleTonIframe = document.createElement("iframe");
-    listenEvent(singleTonIframe, target);
-  }
-  singleTonIframe.srcdoc = makeIframeContent(target);
-  singleTonIframe.style.width = "100%";
-  singleTonIframe.style.border = "0";
-  return singleTonIframe;
-}
-function postMessage(event, data) {
-  if (singleTonIframe) {
-    singleTonIframe.contentWindow.postMessage(
-      JSON.stringify({
-        from: "cusdis",
-        event,
-        data,
-      })
-    );
-  }
-}
-function listenEvent(iframe, target) {
-  const darkModeQuery = window.matchMedia("(prefers-color-scheme: dark)");
-  const onMessage = (e) => {
+  const iframe = document.createElement("iframe");
+  iframe.style.width = "100%";
+  iframe.style.border = "0";
+  iframe.style.overflow = "hidden";
+  iframe.style.minHeight = "200px";
+
+  window.addEventListener("message", (e) => {
     try {
       const msg = JSON.parse(e.data);
+
       if (msg.from === "cusdis") {
         switch (msg.event) {
-          case "onload":
-            {
-              if (target.dataset.theme === "auto") {
-                postMessage(
-                  "setTheme",
-                  darkModeQuery.matches ? "dark" : "light"
-                );
-              }
+          case "onload": {
+            if (target.dataset.theme === "auto") {
+              iframe.contentWindow.postMessage(
+                JSON.stringify({
+                  from: "cusdis",
+                  event: "setTheme",
+                  data: window.matchMedia("(prefers-color-scheme: dark)")
+                    .matches
+                    ? "dark"
+                    : "light",
+                }),
+                "*"
+              );
             }
             break;
-          case "resize":
-            {
-              iframe.style.height = msg.data + "px";
-            }
+          }
+          case "resize": {
+            iframe.style.height = msg.data + "px";
             break;
+          }
         }
       }
-    } catch (e2) {}
-  };
-  window.addEventListener("message", onMessage);
-  function onChangeColorScheme(e) {
-    const isDarkMode = e.matches;
-    if (target.dataset.theme === "auto") {
-      postMessage("setTheme", isDarkMode ? "dark" : "light");
+    } catch (e2) {
+      console.error("Error processing message:", e2);
     }
-  }
-  darkModeQuery.addEventListener("change", onChangeColorScheme);
-  return () => {
-    darkModeQuery.removeEventListener("change", onChangeColorScheme);
-    window.removeEventListener("message", onMessage);
-  };
+  });
+
+  iframe.srcdoc = makeIframeContent(target);
+  return iframe;
 }
+
 function render(target) {
   if (target) {
     target.innerHTML = "";
@@ -98,11 +136,13 @@ function render(target) {
     target.appendChild(iframe);
   }
 }
+
 window.renderCusdis = render;
 window.CUSDIS.renderTo = render;
 window.CUSDIS.setTheme = function (theme) {
-  postMessage("setTheme", theme);
+  // This function is no longer used in the new implementation
 };
+
 function initial() {
   let target;
   if (window.cusdisElementId) {

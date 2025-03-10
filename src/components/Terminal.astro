@@ -1,0 +1,42 @@
+<section class="outlined">
+    <article class="retro__window">
+        <div class="retro__title-bar">hello.sh</div>
+        <div class="terminal">
+            <pre class="loading" id="terminal-text">$ Hi I'm Florida!</pre>
+        </div>
+    </article>
+</section>
+
+<script>
+    const messages = [
+        "$ Hi I'm Florida!",
+        "$ How's it going?",
+        "$ Dw, I'm not AI",
+        "$ See you later!",
+    ];
+
+    let currentIndex = 0;
+    const terminalText = document.getElementById('terminal-text');
+
+    function updateMessage() {
+        console.log('Updating message');
+        terminalText.classList.add('fade-out');
+        currentIndex = (currentIndex + 1) % messages.length;
+        terminalText.textContent = messages[currentIndex];
+        terminalText.classList.remove('fade-out');
+    }
+
+    setInterval(updateMessage, 8000);
+</script>
+
+<style>
+    .fade-out {
+        opacity: 0;
+        transition: opacity 0.5s ease-in-out;
+    }
+    
+    #terminal-text {
+        opacity: 1;
+        transition: opacity 0.5s ease-in-out;
+    }
+</style>

@@ -2,6 +2,7 @@
 import Layout from "../../layouts/Layout.astro";
 import { ghostClient } from "../../lib/ghost";
 import { formatDate } from "../../lib/format_date";
+
 const photos = await ghostClient.posts
 	.browse({
 		filter: 'tag:photo',
@@ -10,34 +11,128 @@ const photos = await ghostClient.posts
     .catch((err) => {
         console.error(err);
     }) || [];
+
+// Group photos by month and day
+const photosByMonth = photos.reduce((acc, photo) => {
+    const date = new Date(photo.published_at);
+    const monthKey = date.toLocaleString('default', { month: 'long' });
+    const dayKey = `${date.getDate()}, ${date.toLocaleString('default', { weekday: 'long' })}`.toUpperCase();
+    
+    if (!acc[monthKey]) {
+        acc[monthKey] = {};
+    }
+    if (!acc[monthKey][dayKey]) {
+        acc[monthKey][dayKey] = [];
+    }
+    acc[monthKey][dayKey].push(photo);
+    return acc;
+}, {});
 ---
 
 <Layout title="Photos">
     <main>
         <section class="outlined">
-            <article class="photos">
-                {photos.map((photo) => (
-                    <section class="retro__window">
-                        <div class="retro__title-bar">{photo.title}</div>
-                        <img class="photo" src={photo.feature_image} alt="">
-                        <footer>
-                            <small>
-                                <time datetime={photo.published_at}>
-                                    {formatDate(photo.published_at)}
-                                </time> by <a>{photo.authors?.[0]?.name || 'Flo'}</a>
-                            </small>
-                        </footer>
-                    </section>
-                ))}
-            </article>
+            {Object.entries(photosByMonth).map(([month, days]) => (
+                <div class="month-section">
+                    <div class="month-label">
+                        <h2>{month.toUpperCase()}</h2>
+                    </div>
+                    <div class="days-container">
+                        {Object.entries(days).map(([day, dayPhotos]) => (
+                            <div class="day-section">
+                                <h3 class="day-label">{day}</h3>
+                                <div class="photos-grid">
+                                    {dayPhotos.map((photo) => (
+                                        <article class="retro__window">
+                                            <div class="retro__title-bar">{photo.title}</div>
+                                            <img class="photo" src={photo.feature_image} alt="">
+                                            <footer>
+                                                <small>
+                                                    <time datetime={photo.published_at}>
+                                                        {formatDate(photo.published_at)}
+                                                    </time> by <a>{photo.authors?.[0]?.name || 'Flo'}</a>
+                                                </small>
+                                            </footer>
+                                        </article>
+                                    ))}
+                                </div>
+                            </div>
+                        ))}
+                    </div>
+                </div>
+            ))}
         </section>
     </main>
 </Layout>
 
 <style>
+    .month-section {
+        display: grid;
+        grid-template-columns: 200px 1fr;
+        gap: 2rem;
+        margin-bottom: 4rem;
+    }
+
+    .month-label {
+        position: sticky;
+        top: 2rem;
+        align-self: start;
+    }
+
+    .month-label h2 {
+        font-size: 2.5rem;
+        margin: 0;
+        font-weight: bold;
+    }
+
+    .day-section {
+        margin-bottom: 3rem;
+    }
+
+    .day-label {
+        font-size: 1.2rem;
+        margin: 0 0 1rem 0;
+        border-bottom: 1px solid var(--nc-bg-3);
+        padding-bottom: 0.5rem;
+    }
+
+    .photos-grid {
+        display: grid;
+        grid-template-columns: repeat(3, minmax(0, 300px));
+        gap: 1rem;
+    }
+
     .photo {
-        width: 400px;
-        height: 400px;
+        width: 100%;
+        height: 300px;
         object-fit: cover;
+    }
+
+    @media (max-width: 1200px) {
+        .photos-grid {
+            grid-template-columns: repeat(2, minmax(0, 300px));
+        }
+    }
+
+    @media (max-width: 900px) {
+        .photos-grid {
+            grid-template-columns: minmax(0, 300px);
+        }
+    }
+
+    @media (max-width: 768px) {
+        .month-section {
+            grid-template-columns: 1fr;
+            gap: 1rem;
+        }
+
+        .month-label {
+            position: static;
+            margin-bottom: 1rem;
+        }
+
+        .month-label h2 {
+            font-size: 2rem;
+        }
     }
 </style>
