@@ -1,10 +1,12 @@
 ---
 import { ghostClient } from '../../lib/ghost';
 import Layout from '../../layouts/Layout.astro';
+import { formatDate } from '../../lib/format_date';
 export async function getStaticPaths() {
     const posts = await ghostClient.posts
         .browse({
             filter: 'tag:writing',
+            include: ['authors'],
             limit: 'all',
         })
         .catch((err) => {
@@ -27,8 +29,39 @@ const { post } = Astro.props;
     <main>
       <article class="outlined">
         <h2>{post.title}</h2>
+        <div class="post-meta">
+          <time datetime={post.published_at}>
+            {formatDate(post.published_at)}
+          </time>
+          <span class="author">by {post.authors?.[0]?.name}</span>
+        </div>
         <Fragment set:html={post.html} />
-
       </article>
     </main>
 </Layout>
+
+<style>
+  .post-meta {
+    display: flex;
+    gap: 0.5rem;
+    align-items: center;
+    font-size: 0.9rem;
+    color: var(--nc-text-secondary);
+    margin-bottom: 1rem;
+  }
+
+  .post-meta time {
+    font-family: monospace;
+  }
+
+  .post-meta .author {
+    position: relative;
+    padding-left: 0.5rem;
+  }
+
+  .post-meta .author::before {
+    content: "•";
+    position: absolute;
+    left: -0.25rem;
+  }
+</style>

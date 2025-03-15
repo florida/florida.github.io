@@ -1,6 +1,8 @@
 ---
 import Layout from "../../layouts/Layout.astro";
 import { ghostClient } from "../../lib/ghost";
+import { formatDate } from "../../lib/format_date";
+
 const posts = await ghostClient.posts.browse({
 	filter: 'tag:writing',
 	include: 'authors'
@@ -9,16 +11,54 @@ const posts = await ghostClient.posts.browse({
 
 <Layout title="Posts">
   <main>
-    {
-      posts.map((post) => (
-        <article class="outlined">
-          <a href={`/writing/${post.slug}`}>
-            <h2>{post.title}</h2>
-          </a>
-
-          <p>{post.excerpt}</p>
-        </article>
-      ))
-    }
+    {posts.map((post) => (
+      <article class="outlined">
+        <a href={`/writing/${post.slug}`}>
+          <h2>{post.title}</h2>
+        </a>
+        <div class="post-meta">
+          <time datetime={post.published_at}>
+            {formatDate(post.published_at)}
+          </time>
+          <span class="author">by {post.authors?.[0]?.name || 'Flo'}</span>
+        </div>
+        <p>{post.excerpt}</p>
+      </article>
+    ))}
   </main>
 </Layout>
+
+<style>
+  .post-meta {
+    display: flex;
+    gap: 0.5rem;
+    align-items: center;
+    font-size: 0.9rem;
+    color: var(--nc-text-secondary);
+    margin-bottom: 1rem;
+  }
+
+  .post-meta time {
+    font-family: monospace;
+  }
+
+  .post-meta .author {
+    position: relative;
+    padding-left: 0.5rem;
+  }
+
+  .post-meta .author::before {
+    content: "•";
+    position: absolute;
+    left: -0.25rem;
+  }
+
+  p {
+    display: -webkit-box;
+    -webkit-line-clamp: 3;  /* Show 3 lines of text */
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    margin: 0;
+  }
+</style>
