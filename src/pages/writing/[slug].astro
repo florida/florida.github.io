@@ -37,6 +37,16 @@ const { post } = Astro.props;
         </div>
         <Fragment set:html={post.html} />
       </article>
+      <section class="outlined">
+        <h1>comments</h1>
+        <div id="cusdis_thread"
+            data-host="https://florida-cusdis.fly.dev"
+            data-app-id="4b37c3e5-e4fb-48cb-a569-cdb059f39f9d"
+            data-page-id={Astro.url}
+            data-page-url={Astro.url}
+            data-page-title={post.title}
+        ></div>
+    </section>
     </main>
 </Layout>
 
