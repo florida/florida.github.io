@@ -50,7 +50,7 @@ const photosByMonth = photos.reduce((acc, photo) => {
                                                 <small>
                                                     <time datetime={photo.published_at}>
                                                         {formatDate(photo.published_at)}
-                                                    </time> by <a>{photo.authors?.[0]?.name || 'Flo'}</a>
+                                                    </time>  <a>{photo.authors?.[0]?.name || 'Flo'}</a>
                                                 </small>
                                             </footer>
                                         </article>

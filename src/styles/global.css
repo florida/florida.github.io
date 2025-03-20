@@ -514,6 +514,7 @@ img {
 }
 
 .retro__window > footer {
+  display: flex;
   border-top: 1px solid var(--nc-bg-3);
   box-shadow: inset 1px 1px 0px gray;
   text-align: right;
