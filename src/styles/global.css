@@ -676,6 +676,10 @@ p:last-child {
   gap: 0.5rem;
 }
 
+.kg-image-has-caption .kg-image-card {
+  display: block;
+}
+
 .kg-card-hascaption figcaption {
   text-align: center;
   font-size: 0.9rem;
