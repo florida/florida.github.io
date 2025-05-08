@@ -660,11 +660,12 @@ p:last-child {
 /* Single image card styles */
 .kg-image-card {
   margin: 2rem 0;
+  text-align: center;
 }
 
 .kg-image-card img {
-  width: 100%;
-  height: auto;
+  width: auto;
+  height: 90vh;
   border-radius: 4px;
 }
 
@@ -697,5 +698,10 @@ p:last-child {
 
   .kg-gallery-row {
       grid-template-columns: 1fr;
+  }
+
+  .kg-image-card img {
+    height: auto;
+    width: 100%;
   }
 }
