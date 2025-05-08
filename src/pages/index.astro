@@ -3,6 +3,8 @@ import Layout from "../layouts/Layout.astro";
 import { ghostClient } from '../lib/ghost';
 import { formatDate } from '../lib/format_date';
 import Terminal from "../components/Terminal.astro";
+import { createHash } from '../lib/createHash';
+
 const title ="Home";
 const doodle = `:doodle {
   @grid: 10 / 80vmin;
@@ -40,6 +42,8 @@ const posts = await ghostClient.posts
     .catch((err) => {
         console.error(err);
     }) || [];
+
+const hash = await createHash(Astro.url.toString());
 ---
 
 <Layout title={title}>
@@ -110,17 +114,15 @@ const posts = await ghostClient.posts
 
 		<section class="outlined">
 			<h1>Guestbook</h1>
+
 			<div id="cusdis_thread"
-			data-host="https://florida-cusdis.fly.dev"
-			data-app-id="4b37c3e5-e4fb-48cb-a569-cdb059f39f9d"
-			data-page-id={Astro.url}
-			data-page-url={Astro.url}
-			data-page-title={title}
-		></div>
+				data-host="https://cusdis.com"
+				data-app-id="02bf931f-c6ff-4b68-b0ec-d15ae20e3b30"
+				data-page-id={hash}
+				data-page-url={Astro.url}
+				data-page-title={title}
+			></div>
 		</section>
-
-
-		
 	</main>
 </Layout>
 <style>

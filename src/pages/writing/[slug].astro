@@ -2,6 +2,7 @@
 import { ghostClient } from '../../lib/ghost';
 import Layout from '../../layouts/Layout.astro';
 import { formatDate } from '../../lib/format_date';
+import { createHash } from '../../lib/createHash';
 export async function getStaticPaths() {
     const posts = await ghostClient.posts
         .browse({
@@ -24,6 +25,7 @@ export async function getStaticPaths() {
     });
 }
 const { post } = Astro.props;
+const hash = await createHash(Astro.url.toString());
 ---
 <Layout title="Posts" postTitle={post.title}>
     <main>
@@ -40,12 +42,12 @@ const { post } = Astro.props;
       <section class="outlined">
         <h1>comments</h1>
         <div id="cusdis_thread"
-            data-host="https://florida-cusdis.fly.dev"
-            data-app-id="4b37c3e5-e4fb-48cb-a569-cdb059f39f9d"
-            data-page-id={Astro.url}
-            data-page-url={Astro.url}
-            data-page-title={post.title}
-        ></div>
+          data-host="https://cusdis.com"
+          data-app-id="02bf931f-c6ff-4b68-b0ec-d15ae20e3b30"
+          data-page-id={hash}
+          data-page-url={Astro.url}
+          data-page-title={post.title}
+			></div>
     </section>
     </main>
 </Layout>

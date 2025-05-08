@@ -33,6 +33,31 @@ const { title, postTitle } = Astro.props;
 		<slot />
 		<Footer />
 		<script src="https://unpkg.com/css-doodle@0.32.2/css-doodle.min.js"></script>
-		<script is:inline src="/comments.js"></script>
+		<script is:inline async defer src="https://cusdis.com/js/cusdis.es.js"></script>
+		<script is:inline>
+			const observer = new MutationObserver((mutations) => {
+			  for (const mutation of mutations) {
+				for (const node of mutation.addedNodes) {
+				  if (node.tagName === 'IFRAME' && node.srcdoc) {
+					const iframe = node;
+		  
+					iframe.onload = () => {
+					  try {
+						const doc = iframe.contentDocument || iframe.contentWindow.document;
+						iframe.style.height = doc.body.scrollHeight + 'px';
+					  } catch (err) {
+						console.warn('Cannot access iframe content:', err);
+					  }
+					};
+				  }
+				}
+			  }
+			});
+		  
+			observer.observe(document.body, {
+			  childList: true,
+			  subtree: true,
+			});
+		  </script>
 	</body>
 </html>
