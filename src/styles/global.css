@@ -676,7 +676,7 @@ p:last-child {
   gap: 0.5rem;
 }
 
-.kg-image-has-caption .kg-image-card {
+.kg-image-has-caption.kg-image-card {
   display: block;
 }
 
