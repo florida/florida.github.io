@@ -709,3 +709,11 @@ p:last-child {
     width: 100%;
   }
 }
+
+
+.kg-blockquote-alt {
+  border-left: none;
+  text-align: center;
+  font-style: italic;
+  line-height: 1.5;
+}
