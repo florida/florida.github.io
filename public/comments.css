@@ -54,6 +54,7 @@ input {
   border: 1px solid var(--nc-bg-3) !important;
   box-shadow: 1px 1px var(--nc-bg-3);
   box-sizing: border-box;
+  width: 100% !important;
 }
 
 textarea:focus,
