@@ -5,60 +5,193 @@ import { formatDate } from "../../lib/format_date";
 
 const posts = await ghostClient.posts.browse({
 	filter: 'tag:writing',
-	include: 'authors'
+	include: 'authors',
+	limit: 'all'
 })
+
+// Group posts by year
+const postsByYear = posts.reduce((acc, post) => {
+	const year = new Date(post.published_at).getFullYear();
+	if (!acc[year]) {
+		acc[year] = [];
+	}
+	acc[year].push(post);
+	return acc;
+}, {} as Record<number, typeof posts>);
+
+// Sort years in descending order
+const sortedYears = Object.keys(postsByYear)
+	.map(Number)
+	.sort((a, b) => b - a);
 ---
 
 <Layout title="Writing">
   <main>
-    {posts.map((post) => (
-      <article class="outlined">
-        <a href={`/writing/${post.slug}`}>
-          <h2>{post.title}</h2>
-        </a>
-        <div class="post-meta">
-          <time datetime={post.published_at}>
-            {formatDate(post.published_at)}
-          </time>
-          <span class="author">by {post.authors?.[0]?.name || 'Flo'}</span>
+    <section class="outlined-full-width">
+      {sortedYears.map((year) => (
+        <div class="year-section">
+          <div class="year-heading">
+            <h2>{year}</h2>
+          </div>
+          <article class="writing-table">
+            {postsByYear[year].map((post) => (
+              <a href={`/writing/${post.slug}`} class="writing-row">
+                <div class="writing-date">
+                  <time datetime={post.published_at}>
+                    {formatDate(post.published_at)}
+                  </time>
+                </div>
+                <div class="writing-title">
+                  {post.title}
+                </div>
+              </a>
+            ))}
+          </article>
         </div>
-        <p>{post.excerpt}</p>
-      </article>
-    ))}
+      ))}
+    </section>
   </main>
 </Layout>
 
 <style>
-  .post-meta {
-    display: flex;
-    gap: 0.5rem;
-    align-items: center;
-    font-size: 0.9rem;
-    color: var(--nc-text-secondary);
-    margin-bottom: 1rem;
+  @keyframes cycleHue {
+    0% { background-color: #e8f4f8; }
+    12.5% { background-color: #fef0f5; }
+    25% { background-color: #f5f0e8; }
+    37.5% { background-color: #f0f8e8; }
+    50% { background-color: #fff5e8; }
+    62.5% { background-color: #e8f0f8; }
+    75% { background-color: #f8e8f0; }
+    87.5% { background-color: #e8f8f0; }
+    100% { background-color: #fff8e8; }
   }
 
-  .post-meta time {
-    font-family: monospace;
+  .year-section {
+    margin-bottom: 2rem;
   }
 
-  .post-meta .author {
-    position: relative;
-    padding-left: 0.5rem;
+  .year-section:last-child {
+    margin-bottom: 0;
   }
 
-  .post-meta .author::before {
-    content: "•";
-    position: absolute;
-    left: -0.25rem;
+  .year-heading {
+    padding: 1rem 2rem;
+    border-bottom: 1px solid var(--nc-bg-3);
   }
 
-  p {
-    display: -webkit-box;
-    -webkit-line-clamp: 3;  /* Show 3 lines of text */
-    -webkit-box-orient: vertical;
-    overflow: hidden;
-    text-overflow: ellipsis;
+  .year-heading h2 {
     margin: 0;
+    font-size: 1.5rem;
+    font-weight: 600;
+  }
+
+  .writing-table {
+    display: flex;
+    flex-direction: column;
+    border-bottom: 1px solid var(--nc-bg-3);
+  }
+
+  .year-section:not(:first-child) .year-heading {
+    border-top: 1px solid var(--nc-bg-3);
+  }
+
+  .writing-row {
+    display: grid;
+    grid-template-columns: 200px 1fr;
+    border-bottom: 1px solid var(--nc-bg-3);
+    text-decoration: none;
+    color: inherit;
+    transition: background-color 0.2s ease;
+  }
+
+  .writing-row:last-child {
+    border-bottom: none;
+  }
+
+  .writing-row:hover {
+    background-color: var(--nc-bg-2);
+  }
+
+  .writing-date {
+    padding: 1rem;
+    font-family: var(--nc-font-mono);
+    font-size: 0.9rem;
+    white-space: nowrap;
+    border-right: 1px solid var(--nc-bg-3);
+    position: relative;
+    overflow: hidden;
+    isolation: isolate;
+    display: flex;
+    align-items: center;
+  }
+
+  .writing-date::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    z-index: -1;
+    opacity: 0;
+    animation: cycleHue 8s ease-in-out infinite;
+    transition: opacity 0.15s ease 0.2s;
+  }
+
+  .writing-date:hover::before {
+    opacity: 1;
+    transition: opacity 0.1s ease 0s;
+  }
+
+  .writing-date time {
+    color: inherit;
+    text-decoration: none;
+    position: relative;
+    z-index: 1;
+  }
+
+  .writing-title {
+    padding: 1rem;
+    font-weight: 600;
+    position: relative;
+    overflow: hidden;
+    isolation: isolate;
+    z-index: 1;
+    display: flex;
+    align-items: center;
+  }
+
+  .writing-title::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    z-index: -1;
+    opacity: 0;
+    animation: cycleHue 8s ease-in-out infinite;
+    transition: opacity 0.15s ease 0.2s;
+  }
+
+  .writing-title:hover::before {
+    opacity: 1;
+    transition: opacity 0.1s ease 0s;
+  }
+
+  @media (max-width: 768px) {
+    .writing-row {
+      grid-template-columns: 1fr;
+      border-bottom: 1px solid var(--nc-bg-3);
+    }
+
+    .writing-date {
+      border-right: none;
+      border-bottom: 1px solid var(--nc-bg-3);
+    }
+
+    .year-heading {
+      padding: 1rem;
+    }
   }
 </style>
