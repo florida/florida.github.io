@@ -1,8 +1,8 @@
 @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap');
 
 :root {
-  --nc-font-sans: 'Noto Sans Mono', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol";
-  --nc-font-mono: 'Noto Sans Mono', monospace;
+  --nc-font-sans: 'Space Mono', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol";
+  --nc-font-mono: 'Space Mono', monospace;
   --nc-tx-white: #FFFFFF;
   --nc-tx-black: #1A1A1A;
   --nc-bg-1: #f5f3eb;
@@ -42,7 +42,7 @@ html {
 }
 
 body {
-  font-family: "Noto Sans Mono", serif;
+  font-family: "Space Mono", serif;
   font-optical-sizing: auto;
   font-weight: 400;
   font-style: normal;
@@ -55,7 +55,7 @@ body {
 }
 
 body > main {
-  max-width: 90vw;
+  max-width: 80vw;
   margin: 0 auto;
   outline: 1px solid var(--nc-bg-3);
   background-color: var(--nc-bg-1);
@@ -65,7 +65,7 @@ body > main {
 
 header.top,
 body > footer {
-  max-width: 90vw;
+  max-width: 80vw;
   margin: 0 auto;
   outline: 1px solid var(--nc-bg-3);
   background-color: var(--nc-bg-1);
@@ -443,6 +443,31 @@ img {
 
 .outlined:last-child {
   border: 0;
+}
+
+.outlined-full-width {
+  padding: 0;
+  border-bottom: 1px solid var(--nc-bg-3);
+  display: block;
+}
+
+.outlined-full-width > h1 {
+  padding-top: 2rem;
+  padding-right: 2rem;
+  padding-bottom: 2rem;
+  padding-left: 2rem;
+  margin-bottom: 0;
+  display: flex;
+  align-items: center;
+  min-height: 3rem;
+}
+
+.outlined-full-width:last-child {
+  border: 0;
+}
+
+.outlined-full-width:has(.writing-table) {
+  border-bottom: 0;
 }
 
 .hero>h1 {

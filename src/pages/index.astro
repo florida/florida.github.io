@@ -29,10 +29,6 @@ const photos = await ghostClient.posts
 		console.error(err);
 	}) || [];
 
-const fleets = await ghostClient.posts.browse({
-	filter: 'tag:fleet'
-}) || [];
-
 const posts = await ghostClient.posts
     .browse({
         limit: 'all',
@@ -49,12 +45,12 @@ const hash = await createHash(Astro.url.toString());
 <Layout title={title}>
 	<main>
 		<Terminal />
-			<section class="outlined">
+			<section class="outlined-full-width">
 			<!-- Swipable CSS carousel with scroll snap -->
 			<div class="carousel">
 				{photos.map((photo) => (
-					<div class="carousel__item retro__window">
-						<div class="retro__title-bar">{photo.title}</div>
+					<div class="carousel__item">
+						<div class="carousel__title">{photo.title}</div>
 						<img src={photo.feature_image} alt="">
 						<footer>
 						<small>
@@ -67,42 +63,24 @@ const hash = await createHash(Astro.url.toString());
 				))}
 			</div>
 		</section>
-		<section class="outlined">
-			<h1>Fleets</h1>
-			<article class="fleets">
-				{fleets.map((fleet) => (
-					<section class="retro__window">
-						<section class="retro__padded-content">
-							<p>{fleet.title}</p>
-					</section>
-					<footer>
-						<small>
-							<time datetime={fleet.published_at}>
-								{formatDate(fleet.published_at)}
-							</time> by <a>{fleet.authors?.[0]?.name || 'Flo'}</a>
-						</small>
-					</footer>	
-				</section>
-			))}
-		</section>
-		<section class="outlined">	
-			<h1>Writing</h1>
-			<article class="writing">
+		<section class="outlined-full-width">	
+			<h1>Posts</h1>
+			<article class="writing-table">
 				{posts.map((post) => (
-					<a href={`/writing/${post.slug}`} class="writing-link">
-						<section class="retro__window">
-							<div class="retro__title-bar">{post.title}</div>
-							<div class="retro__padded-content">
-								<p class="excerpt">{post.excerpt}</p>
+					<a href={`/posts/${post.slug}`} class="writing-row">
+						<div class="writing-left">
+							<div class="writing-date">
+								<time datetime={post.published_at}>
+									{formatDate(post.published_at)}
+								</time>
 							</div>
-							<footer>
-								<small>
-									<time datetime={post.published_at}>
-										{formatDate(post.published_at)}
-									</time> by <span>{post.authors?.[0]?.name || 'Flo'}</span>
-								</small>
-							</footer>
-						</section>
+							<div class="writing-title">
+								{post.title}
+							</div>
+						</div>
+						<div class="writing-content">
+							<p class="excerpt">{post.excerpt}</p>
+						</div>
 					</a>
 				))}
 			</article>
@@ -136,22 +114,52 @@ const hash = await createHash(Astro.url.toString());
 
 	.carousel {
 		display: flex;
-		gap: 1rem;
-		padding-bottom: 10px;
+		padding-bottom: 0;
+		 
 		overflow-x: auto;
 		scroll-snap-type: x mandatory;
 		scroll-behavior: smooth;
 		scrollbar-width: none;
 		-webkit-overflow-scrolling: touch;
+		gap: 0;
 	}
 
 	.carousel__item {
 		flex-shrink: 0; 
-		width: calc(100% / 4 - 16px);
+		width: calc(100% / 4);
 		height: 350px;
 		scroll-snap-align: start;
 		display: flex;
 		flex-direction: column;
+		position: relative;
+		box-sizing: border-box;
+	}
+
+	.carousel__item:not(:last-child)::after {
+		content: '';
+		position: absolute;
+		right: 0;
+		top: 0;
+		bottom: 0;
+		width: 1px;
+		background: var(--nc-bg-3);
+	}
+
+	.carousel__title {
+		padding: 0.5rem 1rem;
+		font-weight: 600;
+		flex-shrink: 0;
+		position: relative;
+	}
+
+	.carousel__title::after {
+		content: '';
+		position: absolute;
+		left: 0;
+		right: 0;
+		bottom: 0;
+		height: 1px;
+		background: var(--nc-bg-3);
 	}
 
 	.carousel__item img {
@@ -163,18 +171,29 @@ const hash = await createHash(Astro.url.toString());
 
 	.carousel__item footer {
 		flex-shrink: 0;
-		padding: 0.5rem;
+		padding: 0.5rem 1rem;
+		position: relative;
+	}
+
+	.carousel__item footer::before {
+		content: '';
+		position: absolute;
+		left: 0;
+		right: 0;
+		top: 0;
+		height: 1px;
+		background: var(--nc-bg-3);
 	}
 
 	@media (max-width: 1024px) {
 		.carousel__item {
-			width: calc(100% / 3 - 14px);
+			width: calc(100% / 3);
 		}
 	}
 
 	@media (max-width: 640px) {
 		.carousel__item {
-			width: calc(100% - 5px);
+			width: 100%;
 			height: 500px;
 		}
 	}
@@ -196,67 +215,174 @@ const hash = await createHash(Astro.url.toString());
 		padding: 1rem;
 	}
 
-	.writing {
+	.writing-table {
 		display: flex;
 		flex-direction: column;
-		gap: 1rem;
+		border-top: 1px solid var(--nc-bg-3);
+		border-bottom: 1px solid var(--nc-bg-3);
 	}
 
-	.writing .retro__window {
-		display: flex;
-		flex-direction: column;
-	}
-
-	.writing .retro__padded-content {
-		flex: 1;
-		padding: 1rem;
-	}
-
-	.writing .post-title {
-		font-size: 1.2rem;
+	.writing-row {
+		display: grid;
+		grid-template-columns: 200px 1fr;
+		border-bottom: 1px solid var(--nc-bg-3);
 		text-decoration: none;
-		margin-bottom: 0.5rem;
-		display: block;
+		color: inherit;
+		transition: background-color 0.2s ease;
 	}
 
-	.writing .excerpt {
-		color: var(--nc-text-secondary);
-		margin: 0.5rem 0;
+	.writing-row:last-child {
+		border-bottom: none;
+	}
+
+	.writing-row:hover {
+		background-color: var(--nc-bg-2);
+	}
+
+	.writing-left {
+		display: flex;
+		flex-direction: column;
+		border-right: 1px solid var(--nc-bg-3);
+	}
+
+	@keyframes cycleHue {
+		0% { background-color: #e8f4f8; }
+		12.5% { background-color: #fef0f5; }
+		25% { background-color: #f5f0e8; }
+		37.5% { background-color: #f0f8e8; }
+		50% { background-color: #fff5e8; }
+		62.5% { background-color: #e8f0f8; }
+		75% { background-color: #f8e8f0; }
+		87.5% { background-color: #e8f8f0; }
+		100% { background-color: #fff8e8; }
+	}
+
+	.writing-date {
+		padding: 1rem;
+		font-family: var(--nc-font-mono);
+		font-size: 0.9rem;
+		white-space: nowrap;
+		border-bottom: 1px solid var(--nc-bg-3);
+		position: relative;
+		overflow: hidden;
+		isolation: isolate;
+		display: flex;
+		align-items: center;
+	}
+
+	.writing-date::before {
+		content: '';
+		position: absolute;
+		top: 0;
+		left: 0;
+		right: 0;
+		bottom: 0;
+		z-index: -1;
+		opacity: 0;
+		animation: cycleHue 8s ease-in-out infinite;
+		transition: opacity 0.2s ease;
+	}
+
+	.writing-date:hover::before {
+		opacity: 1;
+	}
+
+	.writing-date time {
+		color: inherit;
+		text-decoration: none;
+		position: relative;
+		z-index: 1;
+	}
+
+	.writing-title {
+		padding: 0.5rem 1rem 1rem 1rem;
+		font-weight: 600;
+		position: relative;
+		overflow: hidden;
+		isolation: isolate;
+		z-index: 1;
+		flex-grow: 1;
+	}
+
+	.writing-title::before {
+		content: '';
+		position: absolute;
+		top: 0;
+		left: 0;
+		right: 0;
+		bottom: 0;
+		z-index: -1;
+		opacity: 0;
+		animation: cycleHue 8s ease-in-out infinite;
+		transition: opacity 0.2s ease;
+	}
+
+	.writing-title:hover::before {
+		opacity: 1;
+	}
+
+	.writing-content {
+		padding: 1.5rem 2rem;
+		position: relative;
+		overflow: hidden;
+		isolation: isolate;
+	}
+
+	.writing-content::before {
+		content: '';
+		position: absolute;
+		top: 0;
+		left: 0;
+		right: 0;
+		bottom: 0;
+		z-index: -1;
+		opacity: 0;
+		animation: cycleHue 8s ease-in-out infinite;
+		transition: opacity 0.2s ease;
+	}
+
+	.writing-content:hover::before {
+		opacity: 1;
+	}
+
+	.writing-content .excerpt {
+		position: relative;
+		z-index: 1;
+	}
+
+	.writing-content .excerpt {
+		margin: 0;
 		line-height: 1.5;
 		display: -webkit-box;
-		-webkit-line-clamp: 4;  /* Show 3 lines of text */
+		-webkit-line-clamp: 3;
 		-webkit-box-orient: vertical;
 		overflow: hidden;
 		text-overflow: ellipsis;
-	}
-
-	.writing-link {
-		text-decoration: none;
 		color: inherit;
-		display: block;
 	}
 
-	.writing-link:hover .retro__window {
-		transform: translateY(-2px);
-		box-shadow: 2px 2px var(--nc-bg-3);
-	}
+	@media (max-width: 768px) {
+		.writing-row {
+			grid-template-columns: 1fr;
+			border-bottom: 1px solid var(--nc-bg-3);
+		}
 
-	.writing .retro__window {
-		transition: transform 0.2s ease, box-shadow 0.2s ease;
-	}
+		.writing-left {
+			border-right: none;
+			border-bottom: 1px solid var(--nc-bg-3);
+		}
 
-	.writing .excerpt {
-		color: var(--nc-text-secondary);
-		margin: 0.5rem 0;
-		line-height: 1.5;
-		text-decoration: none;
-	}
+		.writing-date {
+			padding: 0.75rem 1rem 0.5rem 1rem;
+		}
 
-	.writing-link p,
-	.writing-link small,
-	.writing-link time,
-	.writing-link span {
-		color: inherit;
-		text-decoration: none;
+		.writing-title {
+			padding: 0 1rem 0.75rem 1rem;
+		}
+
+		.writing-content {
+			padding: 0.75rem 1rem;
+		}
 	}
 </style>
+
