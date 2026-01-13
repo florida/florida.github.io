@@ -9,11 +9,11 @@ const posts = await ghostClient.posts.browse({
 })
 ---
 
-<Layout title="Posts">
+<Layout title="Writing">
   <main>
     {posts.map((post) => (
       <article class="outlined">
-        <a href={`/posts/${post.slug}`}>
+        <a href={`/writing/${post.slug}`}>
           <h2>{post.title}</h2>
         </a>
         <div class="post-meta">

@@ -64,10 +64,10 @@ const hash = await createHash(Astro.url.toString());
 			</div>
 		</section>
 		<section class="outlined-full-width">	
-			<h1>Posts</h1>
+			<h1>Writing</h1>
 			<article class="writing-table">
 				{posts.map((post) => (
-					<a href={`/posts/${post.slug}`} class="writing-row">
+					<a href={`/writing/${post.slug}`} class="writing-row">
 						<div class="writing-left">
 							<div class="writing-date">
 								<time datetime={post.published_at}>
@@ -280,11 +280,12 @@ const hash = await createHash(Astro.url.toString());
 		z-index: -1;
 		opacity: 0;
 		animation: cycleHue 8s ease-in-out infinite;
-		transition: opacity 0.2s ease;
+		transition: opacity 0.15s ease 0.2s;
 	}
 
 	.writing-date:hover::before {
 		opacity: 1;
+		transition: opacity 0.1s ease 0s;
 	}
 
 	.writing-date time {
@@ -314,11 +315,12 @@ const hash = await createHash(Astro.url.toString());
 		z-index: -1;
 		opacity: 0;
 		animation: cycleHue 8s ease-in-out infinite;
-		transition: opacity 0.2s ease;
+		transition: opacity 0.15s ease 0.2s;
 	}
 
 	.writing-title:hover::before {
 		opacity: 1;
+		transition: opacity 0.1s ease 0s;
 	}
 
 	.writing-content {
@@ -338,11 +340,12 @@ const hash = await createHash(Astro.url.toString());
 		z-index: -1;
 		opacity: 0;
 		animation: cycleHue 8s ease-in-out infinite;
-		transition: opacity 0.2s ease;
+		transition: opacity 0.15s ease 0.2s;
 	}
 
 	.writing-content:hover::before {
 		opacity: 1;
+		transition: opacity 0.1s ease 0s;
 	}
 
 	.writing-content .excerpt {
@@ -377,7 +380,7 @@ const hash = await createHash(Astro.url.toString());
 		}
 
 		.writing-title {
-			padding: 0 1rem 0.75rem 1rem;
+			padding: 0.5rem 1rem 0.75rem 1rem;
 		}
 
 		.writing-content {

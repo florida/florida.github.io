@@ -2,136 +2,92 @@ window.CUSDIS = {};
 const makeIframeContent = (target) => {
   const host = target.dataset.host || "https://cusdis.com";
   const iframeJsPath = target.dataset.iframe || `${host}/js/iframe.umd.js`;
-  const cssPath = `${host}/js/style.css`;
-  const customCSSPath = `/comments.css`;
+  const cssPath = `comments.css`;
   return `<!DOCTYPE html>
 <html>
   <head>
     <link rel="stylesheet" href="${cssPath}">
-    <link rel="stylesheet" href="${customCSSPath}">
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Space+Mono:ital,wght@0,400;0,700;1,400;1,700&display=swap" rel="stylesheet">
-
     <base target="_parent" />
     <link>
     <script>
       window.CUSDIS_LOCALE = ${JSON.stringify(window.CUSDIS_LOCALE)}
       window.__DATA__ = ${JSON.stringify(target.dataset)}
-
-      let lastHeight = 0;
-      let updateTimer;
-
-      function updateParentHeight() {
-        clearTimeout(updateTimer);
-        updateTimer = setTimeout(() => {
-          const height = Math.max(
-            document.documentElement.offsetHeight,
-            document.documentElement.scrollHeight,
-            document.body.offsetHeight,
-            document.body.scrollHeight
-          );
-          
-          if (height !== lastHeight) {
-            lastHeight = height;
-            window.parent.postMessage(JSON.stringify({
-              from: 'cusdis',
-              event: 'resize',
-              data: height
-            }), '*');
-          }
-        }, 100);
-      }
-
-      const observer = new MutationObserver((mutations) => {
-        const hasContentChange = mutations.some(mutation => 
-          mutation.type === 'childList' || 
-          (mutation.type === 'attributes' && mutation.target !== document.body)
-        );
-        
-        if (hasContentChange) {
-          updateParentHeight();
-        }
-      });
-
-      window.addEventListener('load', () => {
-        observer.observe(document.body, {
-          childList: true,
-          subtree: true,
-          attributes: true
-        });
-        updateParentHeight();
-      });
-
-      document.addEventListener('DOMContentLoaded', updateParentHeight);
-      window.addEventListener('resize', updateParentHeight);
     <\/script>
     <style>
-      :root { color-scheme: light; }
-      html, body {
-        margin: 0;
-        padding: 0;
-        min-height: 100%;
-      }
-      #root {
-        padding: 1rem;
-      }
-      .cusdis-textarea {
-        min-height: 100px;
+      :root {
+        color-scheme: light;
       }
     </style>
   </head>
   <body>
     <div id="root"></div>
-    <script src="${iframeJsPath}" type="module"><\/script>
+    <script src="${iframeJsPath}" type="module">
+      
+    <\/script>
   </body>
 </html>`;
 };
-
+let singleTonIframe;
 function createIframe(target) {
-  const iframe = document.createElement("iframe");
-  iframe.style.width = "100%";
-  iframe.style.border = "0";
-  iframe.style.overflow = "hidden";
-  iframe.style.minHeight = "200px";
-
-  window.addEventListener("message", (e) => {
+  if (!singleTonIframe) {
+    singleTonIframe = document.createElement("iframe");
+    listenEvent(singleTonIframe, target);
+  }
+  singleTonIframe.srcdoc = makeIframeContent(target);
+  singleTonIframe.style.width = "100%";
+  singleTonIframe.style.border = "0";
+  return singleTonIframe;
+}
+function postMessage(event, data) {
+  if (singleTonIframe) {
+    singleTonIframe.contentWindow.postMessage(
+      JSON.stringify({
+        from: "cusdis",
+        event,
+        data,
+      })
+    );
+  }
+}
+function listenEvent(iframe, target) {
+  const darkModeQuery = window.matchMedia("(prefers-color-scheme: dark)");
+  const onMessage = (e) => {
     try {
       const msg = JSON.parse(e.data);
-
       if (msg.from === "cusdis") {
         switch (msg.event) {
-          case "onload": {
-            if (target.dataset.theme === "auto") {
-              iframe.contentWindow.postMessage(
-                JSON.stringify({
-                  from: "cusdis",
-                  event: "setTheme",
-                  data: window.matchMedia("(prefers-color-scheme: dark)")
-                    .matches
-                    ? "dark"
-                    : "light",
-                }),
-                "*"
-              );
+          case "onload":
+            {
+              if (target.dataset.theme === "auto") {
+                postMessage(
+                  "setTheme",
+                  darkModeQuery.matches ? "dark" : "light"
+                );
+              }
             }
             break;
-          }
-          case "resize": {
-            iframe.style.height = msg.data + "px";
+          case "resize":
+            {
+              iframe.style.height = msg.data + "px";
+            }
             break;
-          }
         }
       }
-    } catch (e2) {
-      console.error("Error processing message:", e2);
+    } catch (e2) {}
+  };
+  window.addEventListener("message", onMessage);
+  function onChangeColorScheme(e) {
+    const isDarkMode = e.matches;
+    if (target.dataset.theme === "auto") {
+      postMessage("setTheme", isDarkMode ? "dark" : "light");
     }
-  });
-
-  iframe.srcdoc = makeIframeContent(target);
-  return iframe;
+  }
+  darkModeQuery.addEventListener("change", onChangeColorScheme);
+  return () => {
+    darkModeQuery.removeEventListener("change", onChangeColorScheme);
+    window.removeEventListener("message", onMessage);
+  };
 }
-
 function render(target) {
   if (target) {
     target.innerHTML = "";
@@ -139,13 +95,11 @@ function render(target) {
     target.appendChild(iframe);
   }
 }
-
 window.renderCusdis = render;
 window.CUSDIS.renderTo = render;
 window.CUSDIS.setTheme = function (theme) {
-  // This function is no longer used in the new implementation
+  postMessage("setTheme", theme);
 };
-
 function initial() {
   let target;
   if (window.cusdisElementId) {

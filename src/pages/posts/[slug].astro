@@ -27,7 +27,7 @@ export async function getStaticPaths() {
 const { post } = Astro.props;
 const hash = await createHash(Astro.url.toString());
 ---
-<Layout title="Posts" postTitle={post.title}>
+<Layout title="Writing" postTitle={post.title}>
     <main>
       <article class="outlined">
         <h2>{post.title}</h2>

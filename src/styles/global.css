@@ -55,7 +55,7 @@ body {
 }
 
 body > main {
-  max-width: 80vw;
+  max-width: 85vw;
   margin: 0 auto;
   outline: 1px solid var(--nc-bg-3);
   background-color: var(--nc-bg-1);
@@ -65,7 +65,7 @@ body > main {
 
 header.top,
 body > footer {
-  max-width: 80vw;
+  max-width: 85vw;
   margin: 0 auto;
   outline: 1px solid var(--nc-bg-3);
   background-color: var(--nc-bg-1);

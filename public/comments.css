@@ -139,8 +139,370 @@ input[type="button"]:enabled:active {
     visibility: hidden;
 }
 
-.grid.grid-cols-2.gap-4 {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(min(100%, 300px), 1fr));
-    gap: 1rem;
+/* Comments Container */
+#root {
+    font-family: var(--nc-font-sans);
+    color: var(--nc-tx-black);
+    background: var(--nc-bg-1);
+}
+
+/* Form Styling - Override Tailwind classes */
+#root .grid {
+    display: grid !important;
+}
+
+#root .grid-cols-1 {
+    grid-template-columns: repeat(1, minmax(0, 1fr)) !important;
+}
+
+#root .grid-cols-2 {
+    grid-template-columns: repeat(2, minmax(0, 1fr)) !important;
+}
+
+#root .gap-4 {
+    gap: 1rem !important;
+}
+
+#root .px-1 {
+    padding-left: 0.25rem !important;
+    padding-right: 0.25rem !important;
+}
+
+#root .mb-2 {
+    margin-bottom: 0.5rem !important;
+}
+
+#root .block {
+    display: block !important;
+}
+
+/* Labels */
+label {
+    display: block;
+    margin-bottom: 0.5rem;
+    font-weight: 600;
+    color: var(--nc-tx-black);
+    font-size: 0.9rem;
+}
+
+/* Form Fields Container */
+.cusdis-form-field {
+    margin-bottom: 1rem;
+}
+
+/* Textarea specific styling */
+textarea {
+    width: 100%;
+    min-height: 120px;
+    resize: vertical;
+    font-family: var(--nc-font-sans);
+}
+
+/* Button styling improvements */
+button[type="submit"] {
+    margin-top: 0.5rem;
+}
+
+/* Comments List */
+.cusdis-comment-list,
+ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+/* Individual Comment */
+.cusdis-comment,
+li {
+    padding: 1rem 0;
+    border-bottom: 1px solid var(--nc-bg-3);
+}
+
+.cusdis-comment:last-child,
+li:last-child {
+    border-bottom: none;
+}
+
+/* Comment Header */
+.cusdis-comment-header {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    margin-bottom: 0.5rem;
+    font-size: 0.9rem;
+}
+
+.cusdis-comment-author {
+    font-weight: 600;
+    color: var(--nc-tx-black);
+}
+
+.cusdis-comment-date {
+    color: var(--nc-tx-black);
+    font-family: var(--nc-font-mono);
+    font-size: 0.85rem;
+    opacity: 0.7;
+}
+
+/* Comment Content */
+.cusdis-comment-content {
+    line-height: 1.6;
+    color: var(--nc-tx-black);
+    margin-top: 0.5rem;
+}
+
+.cusdis-comment-content p {
+    margin: 0 0 0.5rem 0;
+}
+
+.cusdis-comment-content p:last-child {
+    margin-bottom: 0;
+}
+
+/* Reply Button */
+.cusdis-reply-button {
+    margin-top: 0.5rem;
+    font-size: 0.85rem;
+    padding: 4px 8px;
+}
+
+/* Nested Comments */
+.cusdis-comment-replies {
+    margin-left: 2rem;
+    margin-top: 1rem;
+    padding-left: 1rem;
+    border-left: 1px solid var(--nc-bg-3);
+}
+
+/* Loading State */
+.cusdis-loading {
+    text-align: center;
+    padding: 2rem;
+    color: var(--nc-tx-black);
+    opacity: 0.7;
+}
+
+/* Empty State */
+.cusdis-empty {
+    text-align: center;
+    padding: 2rem;
+    color: var(--nc-tx-black);
+    opacity: 0.7;
+}
+
+/* Error Messages */
+.cusdis-error {
+    padding: 0.75rem;
+    margin-bottom: 1rem;
+    background: var(--nc-bg-2);
+    border: 1px solid var(--nc-bg-3);
+    color: var(--nc-tx-black);
+    font-size: 0.9rem;
+}
+
+/* Success Messages */
+.cusdis-success {
+    padding: 0.75rem;
+    margin-bottom: 1rem;
+    background: var(--nc-bg-2);
+    border: 1px solid var(--nc-bg-3);
+    color: var(--nc-tx-black);
+    font-size: 0.9rem;
+}
+
+/* Force the two-column grid for nickname and email */
+#root div.grid.grid-cols-2 {
+    display: grid !important;
+    grid-template-columns: repeat(2, minmax(0, 1fr)) !important;
+    gap: 0.5rem !important;
+}
+
+/* Reduce padding on input containers to bring them closer */
+#root .px-1 {
+    padding-left: 0 !important;
+    padding-right: 0 !important;
+}
+
+/* Comments Container */
+#root {
+    font-family: var(--nc-font-sans);
+    color: var(--nc-tx-black);
+    background: var(--nc-bg-1);
+}
+
+/* Form Styling - Override Tailwind classes */
+#root .grid {
+    display: grid !important;
+}
+
+#root .grid-cols-1 {
+    grid-template-columns: repeat(1, minmax(0, 1fr)) !important;
+}
+
+#root .grid-cols-2 {
+    grid-template-columns: repeat(2, minmax(0, 1fr)) !important;
+}
+
+#root .gap-4 {
+    gap: 1rem !important;
+}
+
+#root .px-1 {
+    padding-left: 0.25rem !important;
+    padding-right: 0.25rem !important;
+}
+
+#root .mb-2 {
+    margin-bottom: 0.5rem !important;
+}
+
+#root .block {
+    display: block !important;
+}
+
+/* Labels */
+label {
+    display: block;
+    margin-bottom: 0.5rem;
+    font-weight: 600;
+    color: var(--nc-tx-black);
+    font-size: 0.9rem;
+}
+
+/* Form Fields Container */
+.cusdis-form-field {
+    margin-bottom: 1rem;
+}
+
+/* Textarea specific styling */
+textarea {
+    width: 100%;
+    min-height: 120px;
+    resize: vertical;
+    font-family: var(--nc-font-sans);
+}
+
+/* Button styling improvements */
+button[type="submit"] {
+    margin-top: 0.5rem;
+}
+
+/* Comments List */
+.cusdis-comment-list,
+ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+/* Individual Comment */
+.cusdis-comment,
+li {
+    padding: 1rem 0;
+    border-bottom: 1px solid var(--nc-bg-3);
+}
+
+.cusdis-comment:last-child,
+li:last-child {
+    border-bottom: none;
+}
+
+/* Comment Header */
+.cusdis-comment-header {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    margin-bottom: 0.5rem;
+    font-size: 0.9rem;
+}
+
+.cusdis-comment-author {
+    font-weight: 600;
+    color: var(--nc-tx-black);
+}
+
+.cusdis-comment-date {
+    color: var(--nc-tx-black);
+    font-family: var(--nc-font-mono);
+    font-size: 0.85rem;
+    opacity: 0.7;
+}
+
+/* Comment Content */
+.cusdis-comment-content {
+    line-height: 1.6;
+    color: var(--nc-tx-black);
+    margin-top: 0.5rem;
+}
+
+.cusdis-comment-content p {
+    margin: 0 0 0.5rem 0;
+}
+
+.cusdis-comment-content p:last-child {
+    margin-bottom: 0;
+}
+
+/* Reply Button */
+.cusdis-reply-button {
+    margin-top: 0.5rem;
+    font-size: 0.85rem;
+    padding: 4px 8px;
+}
+
+/* Nested Comments */
+.cusdis-comment-replies {
+    margin-left: 2rem;
+    margin-top: 1rem;
+    padding-left: 1rem;
+    border-left: 1px solid var(--nc-bg-3);
+}
+
+/* Loading State */
+.cusdis-loading {
+    text-align: center;
+    padding: 2rem;
+    color: var(--nc-tx-black);
+    opacity: 0.7;
+}
+
+/* Empty State */
+.cusdis-empty {
+    text-align: center;
+    padding: 2rem;
+    color: var(--nc-tx-black);
+    opacity: 0.7;
+}
+
+/* Error Messages */
+.cusdis-error {
+    padding: 0.75rem;
+    margin-bottom: 1rem;
+    background: var(--nc-bg-2);
+    border: 1px solid var(--nc-bg-3);
+    color: var(--nc-tx-black);
+    font-size: 0.9rem;
+}
+
+/* Success Messages */
+.cusdis-success {
+    padding: 0.75rem;
+    margin-bottom: 1rem;
+    background: var(--nc-bg-2);
+    border: 1px solid var(--nc-bg-3);
+    color: var(--nc-tx-black);
+    font-size: 0.9rem;
+}
+
+/* Force the two-column grid for nickname and email */
+#root div.grid.grid-cols-2 {
+    display: grid !important;
+    grid-template-columns: repeat(2, minmax(0, 1fr)) !important;
+    gap: 0.5rem !important;
+}
+
+/* Reduce padding on input containers to bring them closer */
+#root .px-1 {
+    padding-left: 0 !important;
+    padding-right: 0 !important;
 }
