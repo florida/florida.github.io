@@ -68,6 +68,18 @@ const navTitle = title === "Home" ? "Florida Elago" : title;
     margin-left: auto;
   }
 
+  @keyframes cycleHue {
+    0% { background-color: #e8f4f8; }
+    12.5% { background-color: #fef0f5; }
+    25% { background-color: #f5f0e8; }
+    37.5% { background-color: #f0f8e8; }
+    50% { background-color: #fff5e8; }
+    62.5% { background-color: #e8f0f8; }
+    75% { background-color: #f8e8f0; }
+    87.5% { background-color: #e8f8f0; }
+    100% { background-color: #fff8e8; }
+  }
+
   header > nav > a {
     border-left: 1px solid var(--nc-bg-3);
     padding: 0 1rem;
@@ -78,6 +90,32 @@ const navTitle = title === "Home" ? "Florida Elago" : title;
     text-decoration: none;
     color: var(--nc-tx-black);
     flex: 1;
+    position: relative;
+    overflow: hidden;
+    isolation: isolate;
+    z-index: 1;
+  }
+
+  header > nav > a::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    z-index: -1;
+    opacity: 0;
+    animation: cycleHue 8s ease-in-out infinite;
+    transition: opacity 0.1s ease 0s;
+  }
+
+  header > nav > a:hover::before {
+    opacity: 1;
+    transition: opacity 0.1s ease 0s;
+  }
+
+  header > nav > a:not(:hover)::before {
+    transition: opacity 0.15s ease 0.2s;
   }
 
   header > nav > a:active {

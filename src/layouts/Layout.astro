@@ -34,7 +34,7 @@ const { title, postTitle } = Astro.props;
 		<slot />
 		<Footer />
 		<script src="https://unpkg.com/css-doodle@0.32.2/css-doodle.min.js"></script>
-		<script is:inline async defer src="comments.js"></script>
+		<script is:inline async defer src="/comments.js"></script>
 		<script is:inline>
 			const observer = new MutationObserver((mutations) => {
 			  for (const mutation of mutations) {
