@@ -625,9 +625,10 @@ p:last-child {
   }
 }
 
-@media (max-width: 640px) {
+@media (max-width: 790px) {
   body {
     font-size: 1.1em;
+    padding-bottom: 60px; /* Space for bottom navigation */
   }
 
 
@@ -651,6 +652,12 @@ p:last-child {
 
   .terminal pre {
     font-size: 1.5rem;
+  }
+}
+
+@media (min-width: 791px) {
+  body {
+    padding-bottom: 0; /* No padding on desktop */
   }
 }
 
