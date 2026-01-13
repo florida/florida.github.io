@@ -466,7 +466,8 @@ img {
   border: 0;
 }
 
-.outlined-full-width:has(.writing-table) {
+.outlined-full-width:has(.writing-table),
+.outlined-full-width:has(.year-section) {
   border-bottom: 0;
 }
 

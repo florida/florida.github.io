@@ -54,6 +54,10 @@ const sortedYears = Object.keys(postsByYear)
 </Layout>
 
 <style>
+  section.outlined-full-width {
+    border-bottom: 0 !important;
+  }
+
   @keyframes cycleHue {
     0% { background-color: #e8f4f8; }
     12.5% { background-color: #fef0f5; }
@@ -66,11 +70,91 @@ const sortedYears = Object.keys(postsByYear)
     100% { background-color: #fff8e8; }
   }
 
-  .year-section {
-    margin-bottom: 2rem;
+  @keyframes cycleHue1 {
+    0% { background-color: #fef0f5; }
+    12.5% { background-color: #f5f0e8; }
+    25% { background-color: #f0f8e8; }
+    37.5% { background-color: #fff5e8; }
+    50% { background-color: #e8f0f8; }
+    62.5% { background-color: #f8e8f0; }
+    75% { background-color: #e8f8f0; }
+    87.5% { background-color: #fff8e8; }
+    100% { background-color: #e8f4f8; }
   }
 
-  .year-section:last-child {
+  @keyframes cycleHue2 {
+    0% { background-color: #f5f0e8; }
+    12.5% { background-color: #f0f8e8; }
+    25% { background-color: #fff5e8; }
+    37.5% { background-color: #e8f0f8; }
+    50% { background-color: #f8e8f0; }
+    62.5% { background-color: #e8f8f0; }
+    75% { background-color: #fff8e8; }
+    87.5% { background-color: #e8f4f8; }
+    100% { background-color: #fef0f5; }
+  }
+
+  @keyframes cycleHue3 {
+    0% { background-color: #f0f8e8; }
+    12.5% { background-color: #fff5e8; }
+    25% { background-color: #e8f0f8; }
+    37.5% { background-color: #f8e8f0; }
+    50% { background-color: #e8f8f0; }
+    62.5% { background-color: #fff8e8; }
+    75% { background-color: #e8f4f8; }
+    87.5% { background-color: #fef0f5; }
+    100% { background-color: #f5f0e8; }
+  }
+
+  @keyframes cycleHue4 {
+    0% { background-color: #fff5e8; }
+    12.5% { background-color: #e8f0f8; }
+    25% { background-color: #f8e8f0; }
+    37.5% { background-color: #e8f8f0; }
+    50% { background-color: #fff8e8; }
+    62.5% { background-color: #e8f4f8; }
+    75% { background-color: #fef0f5; }
+    87.5% { background-color: #f5f0e8; }
+    100% { background-color: #f0f8e8; }
+  }
+
+  @keyframes cycleHue5 {
+    0% { background-color: #e8f0f8; }
+    12.5% { background-color: #f8e8f0; }
+    25% { background-color: #e8f8f0; }
+    37.5% { background-color: #fff8e8; }
+    50% { background-color: #e8f4f8; }
+    62.5% { background-color: #fef0f5; }
+    75% { background-color: #f5f0e8; }
+    87.5% { background-color: #f0f8e8; }
+    100% { background-color: #fff5e8; }
+  }
+
+  @keyframes cycleHue6 {
+    0% { background-color: #f8e8f0; }
+    12.5% { background-color: #e8f8f0; }
+    25% { background-color: #fff8e8; }
+    37.5% { background-color: #e8f4f8; }
+    50% { background-color: #fef0f5; }
+    62.5% { background-color: #f5f0e8; }
+    75% { background-color: #f0f8e8; }
+    87.5% { background-color: #fff5e8; }
+    100% { background-color: #e8f0f8; }
+  }
+
+  @keyframes cycleHue7 {
+    0% { background-color: #e8f8f0; }
+    12.5% { background-color: #fff8e8; }
+    25% { background-color: #e8f4f8; }
+    37.5% { background-color: #fef0f5; }
+    50% { background-color: #f5f0e8; }
+    62.5% { background-color: #f0f8e8; }
+    75% { background-color: #fff5e8; }
+    87.5% { background-color: #e8f0f8; }
+    100% { background-color: #f8e8f0; }
+  }
+
+  .year-section {
     margin-bottom: 0;
   }
 
@@ -88,12 +172,12 @@ const sortedYears = Object.keys(postsByYear)
   .writing-table {
     display: flex;
     flex-direction: column;
-    border-bottom: 1px solid var(--nc-bg-3);
   }
 
   .year-section:not(:first-child) .year-heading {
     border-top: 1px solid var(--nc-bg-3);
   }
+
 
   .writing-row {
     display: grid;
@@ -134,13 +218,18 @@ const sortedYears = Object.keys(postsByYear)
     bottom: 0;
     z-index: -1;
     opacity: 0;
-    animation: cycleHue 8s ease-in-out infinite;
-    transition: opacity 0.15s ease 0.2s;
+    transition: opacity 0.2s ease 2.5s;
   }
 
   .writing-date:hover::before {
     opacity: 1;
+		animation: var(--hue-animation, cycleHue) 8s ease-in-out infinite;
     transition: opacity 0.1s ease 0s;
+  }
+
+  .writing-date:not(:hover)::before {
+		animation: var(--hue-animation, cycleHue) 8s ease-in-out infinite;
+    transition: opacity 0.2s ease 2.5s;
   }
 
   .writing-date time {
@@ -170,13 +259,19 @@ const sortedYears = Object.keys(postsByYear)
     bottom: 0;
     z-index: -1;
     opacity: 0;
-    animation: cycleHue 8s ease-in-out infinite;
-    transition: opacity 0.15s ease 0.2s;
+    transition: opacity 0.2s ease 2.5s;
+    animation-delay: var(--hue-delay, 0s);
   }
 
   .writing-title:hover::before {
     opacity: 1;
+		animation: var(--hue-animation, cycleHue) 8s ease-in-out infinite;
     transition: opacity 0.1s ease 0s;
+  }
+
+  .writing-title:not(:hover)::before {
+		animation: var(--hue-animation, cycleHue) 8s ease-in-out infinite;
+    transition: opacity 0.2s ease 2.5s;
   }
 
   @media (max-width: 768px) {
@@ -195,3 +290,17 @@ const sortedYears = Object.keys(postsByYear)
     }
   }
 </style>
+
+<script>
+	// Set random animation delays for each hoverable element
+	document.addEventListener('DOMContentLoaded', () => {
+		// Writing date and title elements
+		const writingElements = document.querySelectorAll('.writing-date, .writing-title');
+		const animations = ['cycleHue', 'cycleHue1', 'cycleHue2', 'cycleHue3', 'cycleHue4', 'cycleHue5', 'cycleHue6', 'cycleHue7'];
+		writingElements.forEach((el) => {
+			// Randomly assign one of the 8 animation variations
+			const randomAnimation = animations[Math.floor(Math.random() * animations.length)];
+			(el as HTMLElement).style.setProperty('--hue-animation', randomAnimation);
+		});
+	});
+</script>

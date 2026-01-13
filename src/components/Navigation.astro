@@ -80,6 +80,90 @@ const navTitle = title === "Home" ? "Florida Elago" : title;
     100% { background-color: #fff8e8; }
   }
 
+  @keyframes cycleHue1 {
+    0% { background-color: #fef0f5; }
+    12.5% { background-color: #f5f0e8; }
+    25% { background-color: #f0f8e8; }
+    37.5% { background-color: #fff5e8; }
+    50% { background-color: #e8f0f8; }
+    62.5% { background-color: #f8e8f0; }
+    75% { background-color: #e8f8f0; }
+    87.5% { background-color: #fff8e8; }
+    100% { background-color: #e8f4f8; }
+  }
+
+  @keyframes cycleHue2 {
+    0% { background-color: #f5f0e8; }
+    12.5% { background-color: #f0f8e8; }
+    25% { background-color: #fff5e8; }
+    37.5% { background-color: #e8f0f8; }
+    50% { background-color: #f8e8f0; }
+    62.5% { background-color: #e8f8f0; }
+    75% { background-color: #fff8e8; }
+    87.5% { background-color: #e8f4f8; }
+    100% { background-color: #fef0f5; }
+  }
+
+  @keyframes cycleHue3 {
+    0% { background-color: #f0f8e8; }
+    12.5% { background-color: #fff5e8; }
+    25% { background-color: #e8f0f8; }
+    37.5% { background-color: #f8e8f0; }
+    50% { background-color: #e8f8f0; }
+    62.5% { background-color: #fff8e8; }
+    75% { background-color: #e8f4f8; }
+    87.5% { background-color: #fef0f5; }
+    100% { background-color: #f5f0e8; }
+  }
+
+  @keyframes cycleHue4 {
+    0% { background-color: #fff5e8; }
+    12.5% { background-color: #e8f0f8; }
+    25% { background-color: #f8e8f0; }
+    37.5% { background-color: #e8f8f0; }
+    50% { background-color: #fff8e8; }
+    62.5% { background-color: #e8f4f8; }
+    75% { background-color: #fef0f5; }
+    87.5% { background-color: #f5f0e8; }
+    100% { background-color: #f0f8e8; }
+  }
+
+  @keyframes cycleHue5 {
+    0% { background-color: #e8f0f8; }
+    12.5% { background-color: #f8e8f0; }
+    25% { background-color: #e8f8f0; }
+    37.5% { background-color: #fff8e8; }
+    50% { background-color: #e8f4f8; }
+    62.5% { background-color: #fef0f5; }
+    75% { background-color: #f5f0e8; }
+    87.5% { background-color: #f0f8e8; }
+    100% { background-color: #fff5e8; }
+  }
+
+  @keyframes cycleHue6 {
+    0% { background-color: #f8e8f0; }
+    12.5% { background-color: #e8f8f0; }
+    25% { background-color: #fff8e8; }
+    37.5% { background-color: #e8f4f8; }
+    50% { background-color: #fef0f5; }
+    62.5% { background-color: #f5f0e8; }
+    75% { background-color: #f0f8e8; }
+    87.5% { background-color: #fff5e8; }
+    100% { background-color: #e8f0f8; }
+  }
+
+  @keyframes cycleHue7 {
+    0% { background-color: #e8f8f0; }
+    12.5% { background-color: #fff8e8; }
+    25% { background-color: #e8f4f8; }
+    37.5% { background-color: #fef0f5; }
+    50% { background-color: #f5f0e8; }
+    62.5% { background-color: #f0f8e8; }
+    75% { background-color: #fff5e8; }
+    87.5% { background-color: #e8f0f8; }
+    100% { background-color: #f8e8f0; }
+  }
+
   header > nav > a {
     border-left: 1px solid var(--nc-bg-3);
     padding: 0 1rem;
@@ -105,17 +189,19 @@ const navTitle = title === "Home" ? "Florida Elago" : title;
     bottom: 0;
     z-index: -1;
     opacity: 0;
-    animation: cycleHue 8s ease-in-out infinite;
-    transition: opacity 0.1s ease 0s;
+    transition: opacity 0.2s ease 2.5s;
+    animation-delay: var(--hue-delay, 0s);
   }
 
   header > nav > a:hover::before {
     opacity: 1;
+		animation: var(--hue-animation, cycleHue) 8s ease-in-out infinite;
     transition: opacity 0.1s ease 0s;
   }
 
   header > nav > a:not(:hover)::before {
-    transition: opacity 0.15s ease 0.2s;
+		animation: var(--hue-animation, cycleHue) 8s ease-in-out infinite;
+    transition: opacity 0.2s ease 2.5s;
   }
 
   header > nav > a:active {
@@ -176,3 +262,16 @@ const navTitle = title === "Home" ? "Florida Elago" : title;
     nav > a:nth-child(7) { transition-delay: 0.4s; }
   }
 </style>
+
+<script>
+	// Set random animation delays for navigation links
+	document.addEventListener('DOMContentLoaded', () => {
+		const navLinks = document.querySelectorAll('header > nav > a');
+		const animations = ['cycleHue', 'cycleHue1', 'cycleHue2', 'cycleHue3', 'cycleHue4', 'cycleHue5', 'cycleHue6', 'cycleHue7'];
+		navLinks.forEach((link) => {
+			// Randomly assign one of the 8 animation variations
+			const randomAnimation = animations[Math.floor(Math.random() * animations.length)];
+			(link as HTMLElement).style.setProperty('--hue-animation', randomAnimation);
+		});
+	});
+</script>
